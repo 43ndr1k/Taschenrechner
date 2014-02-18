@@ -61,7 +61,7 @@ public class Parser {
 		System.out.println(Wort.toString());
 	}
 
-	private Vector<String> KlammerPruefung(Vector w) {
+	private Vector<String> KlammerPruefung(Vector<String> w) {
 		/*
 		 * Die Klammerpruefung, hier wird nach der letzten ( gesusucht und die
 		 * erste ), alles was dort drin steht wird in eine neue Liste kopiert
@@ -72,6 +72,9 @@ public class Parser {
 		aufkl = 0;
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
+			if(w.get(i).matches("[0-9]") && w.get(i + 1) == "("){
+				w.add(i+1, "*");
+			}
 			if (w.get(i) == "(") {
 				counter1++;
 				aufkl = i;
@@ -83,9 +86,7 @@ public class Parser {
 		}
 		if (counter1 != 0) {
 			liste = new Vector<String>();
-			/*
-			 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
-			 */
+
 			liste.add("0");
 			liste.add("+");
 			for (int i = aufkl + 1; i < zukl; i++) {
@@ -93,7 +94,11 @@ public class Parser {
 				 * neue Liste wird erstellt
 				 */
 				liste.add(w.get(i).toString());
+				
 			}
+			/*
+			 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
+			 */
 			for (int i = 0; i < liste.size() - 1; i++) {
 				if (liste.get(i) == "+" && liste.get(i + 1) == "+") {
 					liste.remove(i);
@@ -114,8 +119,10 @@ public class Parser {
 					liste.remove(i + 1);
 					liste.remove(i + 1);
 					liste.add(i + 1, String.valueOf(a));
-				} else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
-						|| (liste.get(i) == "/" && liste.get(i + 1) == "*")) {
+				}
+				else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
+						|| (liste.get(i) == "/" && liste.get(i + 1) == "*") 
+						) {
 					JOptionPane.showMessageDialog(new JFrame(),
 							"Nicht definierte Operation im Term enthalten",
 							null, JOptionPane.ERROR_MESSAGE);
@@ -148,9 +155,18 @@ public class Parser {
 		 * Aufruf der Rechenoperationen
 		 */
 		Vector<String> l = new Vector<String>();
-		l = liste;
-		l = re.OperatorMalGeteilt(l);
-		l = re.OperatorPlusMinus(l);
+		
+			if(!liste.isEmpty() && liste.size()>2){
+				/*
+				 * If anweisung um den Fehler leere liste und liste mit inhalt 0+ abzufangen
+				 */
+			l = liste;
+			l = re.OperatorMalGeteilt(l);
+			l = re.OperatorPlusMinus(l);
+		}
+			else{
+				liste.add("0");
+			}
 		return l;
 	}
 
