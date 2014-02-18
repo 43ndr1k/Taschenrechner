@@ -36,6 +36,7 @@ public class Parser {
 		boolean ende = false;
 		Vector<String> liste = new Vector<String>();
 		liste = Wort;
+		liste = SyntaxTest(liste);
 		while (ende == false) {
 			if (liste.get(0).equals("(")) {
 				Vector<String> t = new Vector<>();
@@ -72,7 +73,11 @@ public class Parser {
 		aufkl = 0;
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
+			
 			if(w.get(i).matches("[0-9]") && w.get(i + 1) == "("){
+				/*
+				 * Pruefung auf zahl und offende Klammer
+				 */
 				w.add(i+1, "*");
 			}
 			if (w.get(i) == "(") {
@@ -96,41 +101,48 @@ public class Parser {
 				liste.add(w.get(i).toString());
 				
 			}
-			/*
-			 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
-			 */
-			for (int i = 0; i < liste.size() - 1; i++) {
-				if (liste.get(i) == "+" && liste.get(i + 1) == "+") {
-					liste.remove(i);
-				} else if (liste.get(i) == "-" && liste.get(i + 1) == "-") {
-					liste.remove(i);
-					liste.remove(i);
-					liste.add(i, "+");
-				} else if ((liste.get(i) == "-" && liste.get(i + 1) == "+")
-						|| (liste.get(i) == "+" && liste.get(i + 1) == "-")) {
-					liste.remove(i);
-					liste.remove(i);
-					liste.add(i, "-");
-				} else if ((liste.get(i) == "*" && liste.get(i + 1) == "-")
-						|| (liste.get(i) == "/" && liste.get(i + 1) == "-")) {
-					double a = Math.abs(Double.parseDouble(liste.get(i + 2)
-							.toString()));
-					a = -a;
-					liste.remove(i + 1);
-					liste.remove(i + 1);
-					liste.add(i + 1, String.valueOf(a));
-				}
-				else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
-						|| (liste.get(i) == "/" && liste.get(i + 1) == "*") 
-						) {
-					JOptionPane.showMessageDialog(new JFrame(),
-							"Nicht definierte Operation im Term enthalten",
-							null, JOptionPane.ERROR_MESSAGE);
-				}
-			}
+
 			System.out.println(liste.toString());
 		}
 		return liste;
+	}
+
+	private Vector<String> SyntaxTest(Vector<String> liste){
+		
+		/*
+		 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
+		 */
+		for (int i = 0; i < liste.size() - 1; i++) {
+			if (liste.get(i) == "+" && liste.get(i + 1) == "+") {
+				liste.remove(i);
+			} else if (liste.get(i) == "-" && liste.get(i + 1) == "-") {
+				liste.remove(i);
+				liste.remove(i);
+				liste.add(i, "+");
+			} else if ((liste.get(i) == "-" && liste.get(i + 1) == "+")
+					|| (liste.get(i) == "+" && liste.get(i + 1) == "-")) {
+				liste.remove(i);
+				liste.remove(i);
+				liste.add(i, "-");
+			} else if ((liste.get(i) == "*" && liste.get(i + 1) == "-")
+					|| (liste.get(i) == "/" && liste.get(i + 1) == "-")) {
+				double a = Math.abs(Double.parseDouble(liste.get(i + 2)
+						.toString()));
+				a = -a;
+				liste.remove(i + 1);
+				liste.remove(i + 1);
+				liste.add(i + 1, String.valueOf(a));
+			}
+			else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
+					|| (liste.get(i) == "/" && liste.get(i + 1) == "*") 
+					) {
+				JOptionPane.showMessageDialog(new JFrame(),
+						"Nicht definierte Operation im Term enthalten",
+						null, JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		return liste;
+		
 	}
 
 	
