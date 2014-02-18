@@ -37,16 +37,18 @@ public class Parser {
 		Vector<String> liste = new Vector<String>();
 		liste = Wort;
 		liste = SyntaxTest(liste);
-		while (ende == false) {
-			if (liste.get(0).equals("(")) {
-				Vector<String> t = new Vector<>();
-				t = Rechne(KlammerPruefung(liste));
-				liste.add((aufkl), t.get(0).toString());
-				for (int i = zukl + 1; i > aufkl; i--) {
-					liste.remove(i);
+		if(!liste.isEmpty()){
+			while (ende == false) {
+				if (liste.get(0).equals("(")) {
+					Vector<String> t = new Vector<>();
+					t = Rechne(KlammerPruefung(liste));
+					liste.add((aufkl), t.get(0).toString());
+					for (int i = zukl + 1; i > aufkl; i--) {
+						liste.remove(i);
+					}
+				} else {
+					ende = true;
 				}
-			} else {
-				ende = true;
 			}
 		}
 		return liste;
@@ -74,12 +76,7 @@ public class Parser {
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
 			
-			if(w.get(i).matches("[0-9]") && w.get(i + 1) == "("){
-				/*
-				 * Pruefung auf zahl und offende Klammer
-				 */
-				w.add(i+1, "*");
-			}
+			
 			if (w.get(i) == "(") {
 				counter1++;
 				aufkl = i;
@@ -132,13 +129,25 @@ public class Parser {
 				liste.remove(i + 1);
 				liste.remove(i + 1);
 				liste.add(i + 1, String.valueOf(a));
+				
+			}	else if(liste.get(i).matches("[0-9]") && liste.get(i + 1) == "("){
+				/*
+				 * Pruefung auf zahl und offende Klammer
+				 */
+				liste.add(i+1, "*");
 			}
 			else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
 					|| (liste.get(i) == "/" && liste.get(i + 1) == "*") 
-					) {
+					|| (liste.get(i) =="*" && liste.get(i+1) == ")")
+					|| (liste.get(i) =="/" && liste.get(i+1) == ")")
+					|| (liste.get(i) =="+" && liste.get(i+1) == ")")
+					|| (liste.get(i) =="-" && liste.get(i+1) == ")")) {
+	
 				JOptionPane.showMessageDialog(new JFrame(),
 						"Nicht definierte Operation im Term enthalten",
 						null, JOptionPane.ERROR_MESSAGE);
+				liste.clear();
+				break;
 			}
 		}
 		return liste;
