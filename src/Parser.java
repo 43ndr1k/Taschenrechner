@@ -22,15 +22,15 @@ public class Parser {
 		 */
 		InKlammer();
 		StringBuilder out = new StringBuilder();
-		for (String txt : Rekusion()) {
+		for (String txt : zusammenfuehrung()) {
 			out.append(txt);
 		}
 		return out.toString();
 	}
 
-	private Vector<String> Rekusion() {
+	private Vector<String> zusammenfuehrung() {
 		/*
-		 * Mehrfaches aufrufen der Klammerpruefung, mit muebergabe in die
+		 * Mehrfaches aufrufen der Klammerpruefung, mit uebergabe in die
 		 * rechnenoperationen
 		 */
 		boolean ende = false;
