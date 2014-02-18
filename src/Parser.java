@@ -59,6 +59,8 @@ public class Parser {
 		 * Hier werden um den kopletten Term Klammer hinzugefuegt, damit die
 		 * Klammerpruefung richtig funktioniert
 		 */
+		Wort.add(0,"0");
+		Wort.add(1,"+");
 		Wort.add(0, "(");
 		Wort.add(Wort.size(), ")");
 		System.out.println(Wort.toString());
@@ -143,6 +145,9 @@ public class Parser {
 					|| (liste.get(i) =="+" && liste.get(i+1) == ")")
 					|| (liste.get(i) =="-" && liste.get(i+1) == ")")) {
 	
+				/*
+				 * Nicht definierte Operationen
+				 */
 				JOptionPane.showMessageDialog(new JFrame(),
 						"Nicht definierte Operation im Term enthalten",
 						null, JOptionPane.ERROR_MESSAGE);
