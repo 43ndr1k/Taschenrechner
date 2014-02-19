@@ -214,6 +214,7 @@ public class GUI extends JFrame {
 				 * Letzte Eingabe rückgänig machen
 				 */
 				if(liste.size()>0 || sb.length() > 0){
+					
 					if (sb.length() == 0) {
 						liste.remove(liste.size() - 1);
 					}
