@@ -228,7 +228,21 @@ public class GUI extends JFrame {
 		}
 //
 		for (int i = 0; i < LabelFOp.length; i++) {
-			fopButtons[i] = new JButton(LabelFOp[i]);
+			if (LabelFOp[i].equals("sin")) {
+				fopButtons[i] = new JButton("sin(x)");
+			}
+			else if (LabelFOp[i].equals("cos")) {
+				fopButtons[i] = new JButton("cos(x)");
+			}
+			else if (LabelFOp[i].equals("tan")) {
+				fopButtons[i] = new JButton("tan(x)");
+			}
+			else if (LabelFOp[i].equals("!")) {
+				fopButtons[i] = new JButton("(x)!");
+			}
+			else {
+				fopButtons[i] = new JButton(LabelFOp[i]);
+			}
 			fopButtons[i].setName(LabelFOp[i]);
 			fopButtons[i].addActionListener(new Ereignis());
 			panFOp.add(fopButtons[i]);
@@ -355,6 +369,18 @@ public class GUI extends JFrame {
 	
 					updatetxt();
 				}
+			}
+			else if (cmd == "PI") {
+				// Tobi - Pi konst //java.lang.Math.PI
+				sb.append(java.lang.Math.PI);
+				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
+				//updatetxt(); // textbox update - macht PI gleich zu 3.1415
+			}
+			else if (cmd == "e") {
+				// Tobi - Pi konst //java.lang.Math.PI
+				sb.append(java.lang.Math.E);
+				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
+				//updatetxt(); // textbox update - macht PI gleich zu 3.1415
 			}
 			else if (cmd == "=") {
 				
