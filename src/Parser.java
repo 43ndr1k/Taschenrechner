@@ -175,9 +175,9 @@ public class Parser {
 				counter++;
 			} else if (liste.get(i) == ")") {
 				counter--;
-			} else if (){
-				
-			}
+			} // else if (){
+//				
+//			}
 		}
 		return counter;
 	}
