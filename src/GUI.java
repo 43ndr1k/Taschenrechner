@@ -40,7 +40,7 @@ public class GUI extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JMenuBar Menü = new JMenuBar();
-		Menü.setBounds(0, 0, 244, 21);
+		Menü.setBounds(0, 0, 244, 20);
 		getContentPane().add(Menü);
 		
 		Menü.add(MenüItem1Datei);
@@ -55,7 +55,8 @@ public class GUI extends JFrame {
 		
 		JMenuItem Menü2ItemFaQ = new JMenuItem("FaQ");
 		MenüItem2Hilfe.add(Menü2ItemFaQ);
-		tabbedPane.setBounds(0, 21, 244, 349);
+		tabbedPane.setBackground(SystemColor.activeCaptionBorder);
+		tabbedPane.setBounds(-2, 18, 256, 367);
 		getContentPane().add(tabbedPane);
 		
 		JPanel OberpanelTR = new JPanel();
