@@ -372,15 +372,21 @@ public class GUI extends JFrame {
 			}
 			else if (cmd == "PI") {
 				// Tobi - Pi konst //java.lang.Math.PI
-				sb.append(java.lang.Math.PI);
+				liste.add(String.valueOf(java.lang.Math.PI));
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
-				//updatetxt(); // textbox update - macht PI gleich zu 3.1415
+				//updatetxt(); // textbox update - macht PI gleich zu 3.1415...
 			}
 			else if (cmd == "e") {
-				// Tobi - Pi konst //java.lang.Math.PI
+				// Tobi - e konst //java.lang.Math.E
 				sb.append(java.lang.Math.E);
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
-				//updatetxt(); // textbox update - macht PI gleich zu 3.1415
+				//updatetxt(); // textbox update - macht E gleich zu 2.8...
+			}
+			else if (cmd == "quad") {
+				// Tobi - Quadrieren
+				sb.append(cmd);
+				ausgabeFeld.setText(ausgabeFeld.getText());
+				updatetxt();
 			}
 			else if (cmd == "=") {
 				
