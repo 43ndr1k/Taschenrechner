@@ -133,7 +133,8 @@ public class Parser {
 				
 			}	else if((liste.get(i).matches("[0-9]") && liste.get(i + 1) == "(")
 					|| (liste.get(i) == ")" && liste.get(i+1).matches("[0-9]"))
-					|| (liste.get(i) == ")" && liste.get(i+1) == "(")){
+					|| (liste.get(i) == ")" && liste.get(i+1) == "(")
+					|| (liste.get(i).matches("[0-9]") && liste.get(i + 1).matches("[0-9]"))){
 					
 				/*
 				 * Pruefung auf zahl und offende Klammer
