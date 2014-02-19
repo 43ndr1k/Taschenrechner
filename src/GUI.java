@@ -29,7 +29,7 @@ public class GUI extends JFrame {
 	private final JPanel OberpanelER = new JPanel();
 	private final JMenu MenuItem1Datei = new JMenu("Datei");
 	private final JMenu MenuItem2Hilfe = new JMenu("Hilfe");
-	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
 
 
 	/**
@@ -60,14 +60,14 @@ public class GUI extends JFrame {
 
 		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
 		MenuItem2Hilfe.add(Menu2ItemFaQ);
-		tabbedPane.setBackground(SystemColor.activeCaptionBorder);
-		tabbedPane.setBounds(-2, 18, 256, 367);
+		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
+		TabLeiste.setBounds(-2, 18, 256, 367);
 
-		getContentPane().add(tabbedPane);
+		getContentPane().add(TabLeiste);
 
 		
 		JPanel OberpanelTR = new JPanel();
-		tabbedPane.addTab("Rechner", null, OberpanelTR, null);
+		TabLeiste.addTab("Rechner", null, OberpanelTR, null);
 		OberpanelTR.setLayout(null);
 		panClear = new JPanel();
 		panClear.setBounds(15, 71, 213, 35);
@@ -81,7 +81,7 @@ public class GUI extends JFrame {
 				panOp.setLayout(new GridLayout(5, 4, 7, 7));
 				OberpanelTR.add(fehlerfeld);
 				OberpanelTR.add(ausgabeFeld);
-				tabbedPane.addTab("Einheitenrechner", null, OberpanelER, null);
+				TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
 				OberpanelER.setLayout(null);
 
 	
