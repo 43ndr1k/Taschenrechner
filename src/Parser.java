@@ -203,6 +203,8 @@ public class Parser {
 				 * If anweisung um den Fehler leere liste und liste mit inhalt 0+ abzufangen
 				 */
 			l = liste;
+			l = re.log(l);
+			l = re.sqrt(l);
 			l = re.quad(l);
 			l = re.OperatorMalGeteilt(l);
 			l = re.OperatorPlusMinus(l);

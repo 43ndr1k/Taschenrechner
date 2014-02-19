@@ -20,7 +20,7 @@ public class GUI extends JFrame {
 	private String[] LabelZahlen = new String[] { "7", "8",	"9", "4", "5", "6", "1", "2", "3", "I", "0", ",",};
 	private String[] LabelIS = new String[] { "(", ")", "+", "-", "*", "/"};
 	private String[] LabelOp = new String[] { "="};
-	private String[] LabelEOp = new String[] { "e", "log", "wurz", "quad"};
+	private String[] LabelEOp = new String[] { "e", "log", "sqrt", "quad"};
 	private String[] LabelFOp = new String[] { "sin", "cos", "tan", "!", "1/x", "PI"};
 	private String[] LabelClear = new String[] { "C", "E", "<"};
 
@@ -402,6 +402,28 @@ public class GUI extends JFrame {
 					
 				}
 				sb.append(cmd);	
+				updatetxt();
+			}
+			else if (cmd == "sqrt") {
+				// Tobi - Quadrieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add(cmd);
+				liste.add("(");
+				updatetxt();
+			}
+			else if (cmd == "log") {
+				// Tobi - Quadrieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add(cmd);
+				liste.add("(");
 				updatetxt();
 			}
 			else if (cmd == "=") {			
