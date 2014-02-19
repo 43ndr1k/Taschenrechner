@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
-//Tobi Neue sache
+//Tobi Neue sache test
 public class GUI extends JFrame {
 
 	/*
