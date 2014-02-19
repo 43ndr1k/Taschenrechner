@@ -96,9 +96,11 @@ public class GUI extends JFrame {
 			 */
 			if (LabelOp[i].equals("<")) {
 				opButtons[i] = new JButton("<=");
-			} else if (LabelOp[i].equals("I")) {
+			}
+			else if (LabelOp[i].equals("I")) {
 				opButtons[i] = new JButton("+/-");
-			} else {
+			}
+			else {
 				opButtons[i] = new JButton(LabelOp[i]);
 			}
 			opButtons[i].setName(LabelOp[i]);
@@ -134,14 +136,14 @@ public class GUI extends JFrame {
 				 */
 				sb.append(cmd);
 				eingabeFeld.setText(eingabeFeld.getText() + cmd);
-			} else if (cmd == ",") {
+			}
+			else if (cmd == ",") {
 				/*
 				 * mach aus komma ein punkt --> wegen double später
 				 */
 				sb.append(".");
 				eingabeFeld.setText(eingabeFeld.getText() + cmd);
 			}
-
 			else if (cmd == "+" || cmd == "-" || cmd == "*" || cmd == "/") {
 				/*
 				 * Operationen zur liste einfügen, sofern sb nicht leer ist,
@@ -154,7 +156,8 @@ public class GUI extends JFrame {
 				}
 				liste.add(cmd);
 				updatetxt(); // textbox update
-			} else if (cmd == "(" || cmd == ")") {
+			}
+			else if (cmd == "(" || cmd == ")") {
 				// Klammer setzung
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
@@ -162,7 +165,8 @@ public class GUI extends JFrame {
 				}
 				liste.add(cmd);
 				updatetxt(); // textbox update
-			} else if (cmd == "C") {
+			}
+			else if (cmd == "C") {
 				/*
 				 * Komplette liste löschen
 				 */
@@ -171,7 +175,6 @@ public class GUI extends JFrame {
 				System.out.println("clear: " + liste.toString());
 				updatetxt();
 			}
-
 			else if (cmd == "I") {
 				/*
 				 * I bedeutet vorzeichen wechsel .. man nimmt die letzte eingabe
@@ -181,35 +184,39 @@ public class GUI extends JFrame {
 				if (sb.length() > 0) {
 					if (lastentry.equals("-")) {
 						liste.set(liste.size() - 1, "+");
-					} else if (lastentry.equals("+")) {
+					}
+					else if (lastentry.equals("+")) {
 						liste.set(liste.size() - 1, "-");
-					} else if (lastentry.isEmpty()) {
+					}
+					else if (lastentry.isEmpty()) {
 						
 						liste.add("-");
 					}
 				}
 				updatetxt();
-			} else if (cmd == "E") {
+			}
+			else if (cmd == "E") {
 				/*
 				 * E bedeutet CE, also eingabe bis zum letztn Operator rückgänig
 				 * machen
 				 */
 				if (sb.length() == 0) {
 					liste.remove(liste.size() - 1);
-				} else {
+				}
+				else {
 					sb.delete(0, sb.length());
 				}
 
 				updatetxt();
 			}
-
 			else if (cmd == "<") {
 				/*
 				 * Letzte Eingabe rückgänig machen
 				 */
 				if (sb.length() == 0) {
 					liste.remove(liste.size() - 1);
-				} else {
+				}
+				else {
 					System.out.println(sb.toString());
 
 					sb.delete(sb.length() - 1, sb.length());
@@ -229,7 +236,8 @@ public class GUI extends JFrame {
 				if(liste.size()!=0){
 					if (parser.klammerCount(liste) != 0) {
 						fehlerfeld.setText("Die Klammersetzung ist falsch!");
-					} else {
+					}
+					else {
 
 						// Parsen und Ergebis
 						Parser p = new Parser(liste);
