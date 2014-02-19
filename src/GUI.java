@@ -237,14 +237,16 @@ public class GUI extends JFrame {
 				 * E bedeutet CE, also eingabe bis zum letztn Operator rueckgaenig
 				 * machen
 				 */
-				if (sb.length() == 0) {
-					liste.remove(liste.size() - 1);
+				if(liste.size()>0 || sb.length() > 0){
+					if (sb.length() == 0) {
+						liste.remove(liste.size() - 1);
+					}
+					else {
+						sb.delete(0, sb.length());
+					}
+	
+					updatetxt();
 				}
-				else {
-					sb.delete(0, sb.length());
-				}
-
-				updatetxt();
 			}
 			else if (cmd == "<") {
 				/*
