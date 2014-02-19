@@ -157,7 +157,7 @@ public class GUI extends JFrame {
 		fehlerfeld.setBounds(15, 50, 279, 11);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
 		fehlerfeld.setForeground(Color.RED);
-
+		
 	}
 
 	private void ButtonBlock() {
@@ -238,7 +238,6 @@ public class GUI extends JFrame {
 	 */
 	public class Ereignis implements ActionListener {
 		String lastentry = ""; // letzte eingabe liste
-		private Parser parser = new Parser();
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fehlerfeld.setText("");
@@ -363,7 +362,7 @@ public class GUI extends JFrame {
 				System.out.println(liste.toString());
 
 				if(liste.size()!=0){
-					if (parser.klammerCount(liste) != 0) {
+					if (Parser.klammerCount(liste) != 0) {
 						fehlerfeld.setText("Die Klammersetzung ist falsch!");
 					}
 					else {
