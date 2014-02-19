@@ -27,6 +27,9 @@ public class GUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel OberpanelER = new JPanel();
+	private final JPanel Hauptbereich = new JPanel();
+	private final JMenu MenüItem1Datei = new JMenu("Datei");
+	private final JMenu MenüItem2Hilfe = new JMenu("Hilfe");
 
 	/**
 	 * Create the JFrame.
@@ -34,25 +37,46 @@ public class GUI extends JFrame {
 	public GUI() {
 		RechnerOberfaeche();
 		ButtonBlock();
-		getContentPane().setLayout(new CardLayout(0, 0));
+		getContentPane().setLayout(null);
+		
+		JMenuBar Menü = new JMenuBar();
+		Menü.setBounds(0, 0, 244, 21);
+		getContentPane().add(Menü);
+		
+		Menü.add(MenüItem1Datei);
+		
+		JMenuItem Menü1ItemBeenden = new JMenuItem("Beenden");
+		MenüItem1Datei.add(Menü1ItemBeenden);
+		
+		Menü.add(MenüItem2Hilfe);
+		
+		JMenuItem Menü2ItemHowTo = new JMenuItem("HowTo");
+		MenüItem2Hilfe.add(Menü2ItemHowTo);
+		
+		JMenuItem Menü2ItemFaQ = new JMenuItem("FaQ");
+		MenüItem2Hilfe.add(Menü2ItemFaQ);
+		Hauptbereich.setBounds(0, 44, 244, 326);
+		
+		getContentPane().add(Hauptbereich);
+		Hauptbereich.setLayout(new CardLayout(0, 0));
 		
 		JPanel OberpanelTR = new JPanel();
-		getContentPane().add(OberpanelTR, "name_397477240381878");
+		Hauptbereich.add(OberpanelTR, "name_398532789287605");
 		OberpanelTR.setLayout(null);
 		panClear = new JPanel();
-		panClear.setBounds(15, 103, 213, 35);
+		panClear.setBounds(15, 71, 213, 35);
 		OberpanelTR.add(panClear);
 		panClear.setLayout(new GridLayout(1, 2, 7, 0));
 		
 				panClear.add(clearButtons[0]);
 				panClear.add(clearButtons[1]);
-		panOp.setBounds(15, 149, 213, 198);
+		panOp.setBounds(15, 117, 213, 198);
 		OberpanelTR.add(panOp);
 		panOp.setLayout(new GridLayout(5, 4, 7, 7));
 		OberpanelTR.add(fehlerfeld);
 		OberpanelTR.add(ausgabeFeld);
-		
-		getContentPane().add(OberpanelER, "name_397503889676551");
+		Hauptbereich.add(OberpanelER, "name_398532806108807");
+		OberpanelER.setLayout(null);
 
 	
 	}
@@ -62,7 +86,7 @@ public class GUI extends JFrame {
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 250, 387); // Größe des Rahmens
+		setBounds(305, 205, 250, 399); // Größe des Rahmens
 		setResizable(false); // kein Maximieren möglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
@@ -74,7 +98,7 @@ public class GUI extends JFrame {
 		ausgabeFeld.setForeground(Color.GREEN);
 		ausgabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
 		ausgabeFeld.setBackground(Color.black);
-		ausgabeFeld.setBounds(15, 57, 213, 35);
+		ausgabeFeld.setBounds(15, 11, 213, 35);
 
 		fehlerfeld.setBounds(15, 45, 213, 15);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
