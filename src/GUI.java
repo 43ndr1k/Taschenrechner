@@ -39,16 +39,16 @@ public class GUI extends JFrame {
 		ButtonBlock();
 		getContentPane().setLayout(null);
 		
-		JMenuBar Menü = new JMenuBar();
-		Menü.setBounds(0, 0, 244, 20);
-		getContentPane().add(Menü);
+		JMenuBar Menu = new JMenuBar();
+		Menu.setBounds(0, 0, 244, 20);
+		getContentPane().add(Menu);
 		
-		Menü.add(MenüItem1Datei);
+		Menu.add(MenüItem1Datei);
 		
 		JMenuItem Menü1ItemBeenden = new JMenuItem("Beenden");
 		MenüItem1Datei.add(Menü1ItemBeenden);
 		
-		Menü.add(MenüItem2Hilfe);
+		Menu.add(MenüItem2Hilfe);
 		
 		JMenuItem Menü2ItemHowTo = new JMenuItem("HowTo");
 		MenüItem2Hilfe.add(Menü2ItemHowTo);
