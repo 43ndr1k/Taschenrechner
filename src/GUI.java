@@ -12,7 +12,7 @@ public class GUI extends JFrame {
 															// liste
 	private StringBuilder sb = new StringBuilder();
 	private JTextField ausgabeFeld = new JTextField();// JTextField() da hier
-														// rechtsbündig möglich;
+														// rechtsbuendig moeglich;
 
 	private String[] LabelOp = new String[] { "<", "(", ")", "+", "7", "8",
 			"9", "-", "4", "5", "6", "*", "1", "2", "3", "/", "0", "I", ",",
@@ -27,9 +27,10 @@ public class GUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel OberpanelER = new JPanel();
-	private final JMenu MenüItem1Datei = new JMenu("Datei");
-	private final JMenu MenüItem2Hilfe = new JMenu("Hilfe");
+	private final JMenu MenuItem1Datei = new JMenu("Datei");
+	private final JMenu MenuItem2Hilfe = new JMenu("Hilfe");
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+
 
 	/**
 	 * Create the JFrame.
@@ -39,25 +40,31 @@ public class GUI extends JFrame {
 		ButtonBlock();
 		getContentPane().setLayout(null);
 		
+
 		JMenuBar Menu = new JMenuBar();
 		Menu.setBounds(0, 0, 244, 20);
 		getContentPane().add(Menu);
 		
-		Menu.add(MenüItem1Datei);
+		Menu.add(MenuItem1Datei);
+
 		
-		JMenuItem Menü1ItemBeenden = new JMenuItem("Beenden");
-		MenüItem1Datei.add(Menü1ItemBeenden);
+		JMenuItem Menue1ItemBeenden = new JMenuItem("Beenden");
+		MenuItem1Datei.add(Menue1ItemBeenden);
 		
-		Menu.add(MenüItem2Hilfe);
+		Menu.add(MenuItem2Hilfe);
+
 		
-		JMenuItem Menü2ItemHowTo = new JMenuItem("HowTo");
-		MenüItem2Hilfe.add(Menü2ItemHowTo);
+		JMenuItem Menue2ItemHowTo = new JMenuItem("HowTo");
+		MenuItem2Hilfe.add(Menue2ItemHowTo);
 		
-		JMenuItem Menü2ItemFaQ = new JMenuItem("FaQ");
-		MenüItem2Hilfe.add(Menü2ItemFaQ);
+
+		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
+		MenuItem2Hilfe.add(Menu2ItemFaQ);
 		tabbedPane.setBackground(SystemColor.activeCaptionBorder);
 		tabbedPane.setBounds(-2, 18, 256, 367);
+
 		getContentPane().add(tabbedPane);
+
 		
 		JPanel OberpanelTR = new JPanel();
 		tabbedPane.addTab("Rechner", null, OberpanelTR, null);
@@ -81,17 +88,17 @@ public class GUI extends JFrame {
 	}
 
 	/*
-	 * größe,eingabe feld festlegen
+	 * groesse,eingabe feld festlegen
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 250, 399); // Größe des Rahmens
-		setResizable(false); // kein Maximieren möglich
+		setBounds(305, 205, 250, 399); // Groesse des Rahmens
+		setResizable(false); // kein Maximieren moeglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbündig
+		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbuendig
 		ausgabeFeld.setEditable(false); // man kann etwas in Display schreiben
 		ausgabeFeld.requestFocus(); // hat im Rechner den Focus
 		ausgabeFeld.setForeground(Color.GREEN);
@@ -162,22 +169,22 @@ public class GUI extends JFrame {
 					|| cmd == "4" || cmd == "5" || cmd == "6" || cmd == "7"
 					|| cmd == "8" || cmd == "9") {
 				/*
-				 * Wert zum StringBulder hinzufügen
+				 * Wert zum StringBulder hinzufuegen
 				 */
 				sb.append(cmd);
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == ",") {
 				/*
-				 * mach aus komma ein punkt --> wegen double später
+				 * mach aus komma ein punkt --> wegen double spaeter
 				 */
 				sb.append(".");
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == "+" || cmd == "-" || cmd == "*" || cmd == "/") {
 				/*
-				 * Operationen zur liste einfügen, sofern sb nicht leer ist,
-				 * wird die zahl zur liste hinzugefügt und füge operator hinzu
+				 * Operationen zur liste einfuegen, sofern sb nicht leer ist,
+				 * wird die zahl zur liste hinzugefuegt und fuege operator hinzu
 				 * und leere sb
 				 */
 				if (sb.length() != 0) {
@@ -198,7 +205,7 @@ public class GUI extends JFrame {
 			}
 			else if (cmd == "C") {
 				/*
-				 * Komplette liste löschen
+				 * Komplette liste loeschen
 				 */
 				liste.clear();
 				sb.delete(0, sb.length());
@@ -227,7 +234,7 @@ public class GUI extends JFrame {
 			}
 			else if (cmd == "E") {
 				/*
-				 * E bedeutet CE, also eingabe bis zum letztn Operator rückgänig
+				 * E bedeutet CE, also eingabe bis zum letztn Operator rueckgaenig
 				 * machen
 				 */
 				if (sb.length() == 0) {
@@ -241,7 +248,7 @@ public class GUI extends JFrame {
 			}
 			else if (cmd == "<") {
 				/*
-				 * Letzte Eingabe rückgänig machen
+				 * Letzte Eingabe rueckgaenig machen
 				 */
 				if(liste.size()>0 || sb.length() > 0){
 					

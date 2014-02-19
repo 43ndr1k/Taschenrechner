@@ -162,7 +162,7 @@ public class Parser {
 	
 	public int klammerCount(Vector<String> liste) {
 		/*
-		 * Klammer Prüfung, ob alle klammer die auf gehn auch zu gehen
+		 * Klammer Pruefung, ob alle klammer die auf gehn auch zu gehen
 		 */
 		int counter = 0;
 		for (int i = 0; i < liste.size(); i++) {
