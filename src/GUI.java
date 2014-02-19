@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -36,7 +37,7 @@ public class GUI extends JFrame {
 	private JButton eopButtons[] = new JButton[4];
 	private JButton fopButtons[] = new JButton[6];
 	private JButton clearButtons[] = new JButton[3];
-	private JLabel fehlerfeld = new JLabel();
+	
 	//Menus
 	private static final long serialVersionUID = 1L;
 	private final JMenu MenuItem1Datei = new JMenu("Datei");
@@ -116,7 +117,7 @@ public class GUI extends JFrame {
 		OberpanelTR.add(panFOp);
 		panFOp.setLayout(new GridLayout(1, 6, 7, 7));
 		
-		OberpanelTR.add(fehlerfeld);
+		
 		OberpanelTR.add(ausgabeFeld);
 		
 		panOP.setOpaque(false);
@@ -150,9 +151,7 @@ public class GUI extends JFrame {
 		ausgabeFeld.setBackground(Color.black);
 		ausgabeFeld.setBounds(10, 10, 344, 40);
 
-		fehlerfeld.setBounds(15, 50, 279, 11);
-		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
-		fehlerfeld.setForeground(Color.RED);
+		
 		
 	}
 
@@ -258,7 +257,7 @@ public class GUI extends JFrame {
 		String lastentry = ""; // letzte eingabe liste
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			fehlerfeld.setText("");
+			
 
 			JButton a = (JButton) e.getSource();
 			String cmd = a.getName(); // Name der aufgerufenden Button
@@ -436,7 +435,9 @@ public class GUI extends JFrame {
 
 				if(liste.size()!=0){
 					if (Parser.istEingeklammert(liste) == false) {
-						fehlerfeld.setText("Die Klammersetzung ist falsch!");
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Die Klammersetzung ist falsch!",
+								null, JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						// Parsen und Ergebis
@@ -449,7 +450,9 @@ public class GUI extends JFrame {
 					
 				}
 				else{
-					fehlerfeld.setText("Keine Eingabe!");
+					JOptionPane.showMessageDialog(new JFrame(),
+							"Keine Eingabe!",
+							null, JOptionPane.ERROR_MESSAGE);
 				}
 			} 
 
