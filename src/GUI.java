@@ -366,7 +366,6 @@ public class GUI extends JFrame {
 						fehlerfeld.setText("Die Klammersetzung ist falsch!");
 					}
 					else {
-
 						// Parsen und Ergebis
 						Parser p = new Parser(liste);
 						String ergebnis = p.Ergebnis();
