@@ -131,10 +131,10 @@ public class Parser {
 				liste.remove(i + 1);
 				liste.add(i + 1, String.valueOf(a));
 				
-			}	else if((liste.get(i).matches("[0-9]") && liste.get(i + 1) == "(")
-					|| (liste.get(i) == ")" && liste.get(i+1).matches("[0-9]"))
+			}	else if((liste.get(i).matches("\\d+([.]{1}\\d+)?") && liste.get(i + 1) == "(")
+					|| (liste.get(i) == ")" && liste.get(i+1).matches("\\d+([.]{1}\\d+)?"))
 					|| (liste.get(i) == ")" && liste.get(i+1) == "(")
-					|| (liste.get(i).matches("[0-9]") && liste.get(i + 1).matches("[0-9]"))){
+					|| liste.get(i).matches("\\d+([.]{1}\\d+)?") && liste.get(i+1).matches("\\d+([.]{1}\\d+)?")){
 					
 				/*
 				 * Pruefung auf zahl und offende Klammer
