@@ -58,6 +58,7 @@ public class Parser {
 		/*
 		 * Hier werden um den kopletten Term Klammer hinzugefuegt, damit die
 		 * Klammerpruefung richtig funktioniert
+		 * desweiteren wird 0+ hinzugefügt, damit der term(-Zahl+...) funktioniert)
 		 */
 		Wort.add(0,"0");
 		Wort.add(1,"+");
