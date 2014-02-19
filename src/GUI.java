@@ -83,7 +83,7 @@ public class GUI extends JFrame {
 
 		
 		JPanel OberpanelTR = new JPanel();
-		OberpanelTR.setBackground(new Color(135, 206, 250));
+		OberpanelTR.setBackground(new Color(125, 196, 240));
 		TabLeiste.addTab("Rechner", null, OberpanelTR, null);
 		OberpanelTR.setLayout(null);
 
@@ -171,21 +171,26 @@ public class GUI extends JFrame {
 		clearButtons[0] = new JButton("CE");
 		clearButtons[0].setName(LabelClear[0]);
 		clearButtons[0].addActionListener(new Ereignis());
+		clearButtons[0].setBorder(emptyBorder);
 		
 		clearButtons[1] = new JButton(LabelClear[1]);
 		clearButtons[1].setName(LabelClear[1]);
 		clearButtons[1].addActionListener(new Ereignis());
+		clearButtons[1].setBorder(emptyBorder);
 		
-		clearButtons[2] = new JButton("<-");
+		clearButtons[2] = new JButton("<=");
 		clearButtons[2].setName(LabelClear[2]);
 		clearButtons[2].addActionListener(new Ereignis());
+		clearButtons[2].setBorder(emptyBorder);
+		
 //Inhalt der Blocke erzeugen, 5 Blocke
 		for (int i = 0; i < LabelZahlen.length; i++) {
 			zahlenButtons[i] = new JButton(LabelZahlen[i]);
 			zahlenButtons[i].setName(LabelZahlen[i]);
 			zahlenButtons[i].addActionListener(new Ereignis());
 			panZahlen.add(zahlenButtons[i]);
-			zahlenButtons[i].setBackground(new Color(255, 255, 255)); 
+			zahlenButtons[i].setBackground(new Color(255, 255, 255));
+			zahlenButtons[i].setBorder(emptyBorder);
 		}
 //
 		for (int i = 0; i < LabelIS.length; i++) {
