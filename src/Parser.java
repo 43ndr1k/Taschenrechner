@@ -27,7 +27,6 @@ public class Parser {
 		}
 		return out.toString();
 	}
-
 	private Vector<String> zusammenfuehrung() {
 		/*
 		 * Mehrfaches aufrufen der Klammerpruefung, mit uebergabe in die
