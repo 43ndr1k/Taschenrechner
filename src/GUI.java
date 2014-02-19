@@ -377,6 +377,7 @@ public class GUI extends JFrame {
 						sb.append(ergebnis);
 						liste.clear();
 					}
+					
 				}
 				else{
 					fehlerfeld.setText("Keine Eingabe!");
