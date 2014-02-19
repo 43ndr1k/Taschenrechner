@@ -388,8 +388,7 @@ public class GUI extends JFrame {
 				ausgabeFeld.setText(ausgabeFeld.getText());
 				updatetxt();
 			}
-			else if (cmd == "=") {
-				
+			else if (cmd == "=") {			
 				// gleiche wie komentar zuvor
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
