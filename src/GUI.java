@@ -27,9 +27,9 @@ public class GUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel OberpanelER = new JPanel();
-	private final JPanel Hauptbereich = new JPanel();
 	private final JMenu MenüItem1Datei = new JMenu("Datei");
 	private final JMenu MenüItem2Hilfe = new JMenu("Hilfe");
+	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 	/**
 	 * Create the JFrame.
@@ -55,13 +55,11 @@ public class GUI extends JFrame {
 		
 		JMenuItem Menü2ItemFaQ = new JMenuItem("FaQ");
 		MenüItem2Hilfe.add(Menü2ItemFaQ);
-		Hauptbereich.setBounds(0, 44, 244, 326);
-		
-		getContentPane().add(Hauptbereich);
-		Hauptbereich.setLayout(new CardLayout(0, 0));
+		tabbedPane.setBounds(0, 21, 244, 349);
+		getContentPane().add(tabbedPane);
 		
 		JPanel OberpanelTR = new JPanel();
-		Hauptbereich.add(OberpanelTR, "name_398532789287605");
+		tabbedPane.addTab("Rechner", null, OberpanelTR, null);
 		OberpanelTR.setLayout(null);
 		panClear = new JPanel();
 		panClear.setBounds(15, 71, 213, 35);
@@ -70,13 +68,13 @@ public class GUI extends JFrame {
 		
 				panClear.add(clearButtons[0]);
 				panClear.add(clearButtons[1]);
-		panOp.setBounds(15, 117, 213, 198);
-		OberpanelTR.add(panOp);
-		panOp.setLayout(new GridLayout(5, 4, 7, 7));
-		OberpanelTR.add(fehlerfeld);
-		OberpanelTR.add(ausgabeFeld);
-		Hauptbereich.add(OberpanelER, "name_398532806108807");
-		OberpanelER.setLayout(null);
+				panOp.setBounds(15, 117, 213, 198);
+				OberpanelTR.add(panOp);
+				panOp.setLayout(new GridLayout(5, 4, 7, 7));
+				OberpanelTR.add(fehlerfeld);
+				OberpanelTR.add(ausgabeFeld);
+				tabbedPane.addTab("Einheitenrechner", null, OberpanelER, null);
+				OberpanelER.setLayout(null);
 
 	
 	}
@@ -100,7 +98,7 @@ public class GUI extends JFrame {
 		ausgabeFeld.setBackground(Color.black);
 		ausgabeFeld.setBounds(15, 11, 213, 35);
 
-		fehlerfeld.setBounds(15, 45, 213, 15);
+		fehlerfeld.setBounds(15, 45, 213, 27);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
 		fehlerfeld.setForeground(Color.RED);
 
