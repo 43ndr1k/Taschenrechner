@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 public class GUI extends JFrame {
 
 	/*
@@ -43,6 +46,7 @@ public class GUI extends JFrame {
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel panOP = new JPanel();
 
+	Border emptyBorder = BorderFactory.createEmptyBorder();
 	/**
 	 * Create the JFrame.
 	 */
@@ -70,6 +74,8 @@ public class GUI extends JFrame {
 
 		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
 		MenuItem2Hilfe.add(Menu2ItemFaQ);
+		TabLeiste.setToolTipText("teeest\r\n");
+		TabLeiste.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
 		TabLeiste.setBounds(-2, 18, 369, 384);
 
@@ -77,43 +83,50 @@ public class GUI extends JFrame {
 
 		
 		JPanel OberpanelTR = new JPanel();
+		OberpanelTR.setBackground(new Color(135, 206, 250));
 		TabLeiste.addTab("Rechner", null, OberpanelTR, null);
 		OberpanelTR.setLayout(null);
+
+		panEOp.setOpaque(false);
+		panEOp.setBounds(301, 160, 50, 177);
+		panEOp.setLayout(new GridLayout(4, 1, 7, 7));
+		OberpanelTR.add(panEOp);
+
 		panClear = new JPanel();
 		panClear.setBounds(10, 60, 344, 40);
 		OberpanelTR.add(panClear);
 		panClear.setLayout(new GridLayout(1, 3, 7, 0));
-		
+		panClear.setOpaque(false);
 		panClear.add(clearButtons[0]);
 		panClear.add(clearButtons[1]);
 		panClear.add(clearButtons[2]);
 
-		panZahlen.setBackground(Color.RED);
+		panZahlen.setOpaque(false);
 		panZahlen.setBounds(10, 160, 167, 177);
 		OberpanelTR.add(panZahlen);
 		panZahlen.setLayout(new GridLayout(4, 3, 7, 7));
-		
-		panIS.setBackground(new Color(175, 238, 238));
+	
+		panIS.setOpaque(false);
 		panIS.setBounds(187, 160, 107, 134);
 		panIS.setLayout(new GridLayout(3, 2, 7, 7));
 		OberpanelTR.add(panIS);
-		panEOp.setBackground(new Color(135, 206, 250));
 		
-		panEOp.setBounds(301, 160, 50, 177);
-		panEOp.setLayout(new GridLayout(4, 1, 7, 7));
-		panFOp.setBackground(new Color(135, 206, 250));
-		OberpanelTR.add(panEOp);
-		
+		panFOp.setOpaque(false);
 		panFOp.setBounds(10, 110, 344, 40);
 		OberpanelTR.add(panFOp);
 		panFOp.setLayout(new GridLayout(1, 6, 7, 7));
 		
-		
 		OberpanelTR.add(fehlerfeld);
 		OberpanelTR.add(ausgabeFeld);
-		panOP.setBounds(187, 302, 107, 35);
 		
+		panOP.setOpaque(false);
+		panOP.setBounds(187, 302, 107, 35);
+		panOP.setLayout(new GridLayout(1, 1, 7, 7));
 		OberpanelTR.add(panOP);
+		
+		Panel panZ = new Panel();
+		panZ.setBounds(300, 136, 64, 220);
+		OberpanelTR.add(panZ);
 				
 				
 				
@@ -172,6 +185,7 @@ public class GUI extends JFrame {
 			zahlenButtons[i].setName(LabelZahlen[i]);
 			zahlenButtons[i].addActionListener(new Ereignis());
 			panZahlen.add(zahlenButtons[i]);
+			zahlenButtons[i].setBackground(new Color(255, 255, 255)); 
 		}
 //
 		for (int i = 0; i < LabelIS.length; i++) {
@@ -179,6 +193,7 @@ public class GUI extends JFrame {
 			isButtons[i].setName(LabelIS[i]);
 			isButtons[i].addActionListener(new Ereignis());
 			panIS.add(isButtons[i]);
+			isButtons[i].setBorder(emptyBorder);
 		}
 //
 		for (int i = 0; i < LabelOp.length; i++) {
@@ -186,6 +201,7 @@ public class GUI extends JFrame {
 			opButtons[i].setName(LabelOp[i]);
 			opButtons[i].addActionListener(new Ereignis());
 			panOP.add(opButtons[i]);
+			opButtons[i].setBorder(emptyBorder);
 		}
 //
 		for (int i = 0; i < LabelEOp.length; i++) {
@@ -193,7 +209,7 @@ public class GUI extends JFrame {
 				eopButtons[i] = new JButton("log(x)");
 			}
 			else if (LabelEOp[i].equals("wurz")) {
-				eopButtons[i] = new JButton("Wurzel(x)");
+				eopButtons[i] = new JButton("sqrt(x)");
 			}
 			else if (LabelEOp[i].equals("quad")) {
 				eopButtons[i] = new JButton("x²");
@@ -204,24 +220,15 @@ public class GUI extends JFrame {
 			eopButtons[i].setName(LabelEOp[i]);
 			eopButtons[i].addActionListener(new Ereignis());
 			panEOp.add(eopButtons[i]);
+			eopButtons[i].setBorder(emptyBorder);
 		}
 //
 		for (int i = 0; i < LabelFOp.length; i++) {
-			if (LabelFOp[i].equals("log")) {
-				fopButtons[i] = new JButton("log(x)");
-			}
-			else if (LabelFOp[i].equals("wurz")) {
-				fopButtons[i] = new JButton("Wurzel(x)");
-			}
-			else if (LabelFOp[i].equals("quad")) {
-				opButtons[i] = new JButton("x²");
-			}
-			else {
-				fopButtons[i] = new JButton(LabelFOp[i]);
-			}
+			fopButtons[i] = new JButton(LabelFOp[i]);
 			fopButtons[i].setName(LabelFOp[i]);
 			fopButtons[i].addActionListener(new Ereignis());
 			panFOp.add(fopButtons[i]);
+			fopButtons[i].setBorder(emptyBorder);
 		}
 
 	}
