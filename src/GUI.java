@@ -381,7 +381,6 @@ public class GUI extends JFrame {
 
 		}
 	}
-
 	public void updatetxt() {
 		/*
 		 * Das eingabe feld updaten
