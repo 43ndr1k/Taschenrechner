@@ -13,25 +13,35 @@ public class GUI extends JFrame {
 	private StringBuilder sb = new StringBuilder();
 	private JTextField ausgabeFeld = new JTextField();// JTextField() da hier
 														// rechtsbuendig moeglich;
+	//alle 6 Felder
+	private String[] LabelZahlen = new String[] { "7", "8",	"9", "4", "5", "6", "1", "2", "3", "I", "0", ",",};
+	private String[] LabelIS = new String[] { "(", ")", "+", "-", "*", "/"};
+	private String[] LabelOp = new String[] { "="};
+	private String[] LabelEOp = new String[] { "e", "log", "wurz", "quad"};
+	private String[] LabelFOp = new String[] { "sin", "cos", "tan", "!", "1/x", "PI"};
+	private String[] LabelClear = new String[] { "C", "E", "<"};
 
-	private String[] LabelOp = new String[] { "<", "(", ")", "+", "7", "8",
-			"9", "-", "4", "5", "6", "*", "1", "2", "3", "/", "0", "I", ",",
-			"=" };
-	private String[] LabelClear = new String[] { "E", "C" };
-
-	private JPanel panClear = new JPanel();
 	private JPanel panZahlen = new JPanel();
-	private JPanel panOp = new JPanel();
-	private JButton opButtons[] = new JButton[20];
-	private JButton clearButtons[] = new JButton[2];
+	private JPanel panIS = new JPanel();
+	private JPanel panEOp = new JPanel();
+	private JPanel panFOp = new JPanel();
+	private JPanel panClear = new JPanel();
+	
+	private JButton zahlenButtons[] = new JButton[15];
+	private JButton isButtons[] = new JButton[6];
+	private JButton opButtons[] = new JButton[1];
+	private JButton eopButtons[] = new JButton[4];
+	private JButton fopButtons[] = new JButton[6];
+	private JButton clearButtons[] = new JButton[3];
 	private JLabel fehlerfeld = new JLabel();
-
+	//Menus
 	private static final long serialVersionUID = 1L;
-	private final JPanel OberpanelER = new JPanel();
 	private final JMenu MenuItem1Datei = new JMenu("Datei");
 	private final JMenu MenuItem2Hilfe = new JMenu("Hilfe");
+	//Tableiste
+	private final JPanel OberpanelER = new JPanel();
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
-
+	private final JPanel panOP = new JPanel();
 
 	/**
 	 * Create the JFrame.
@@ -43,7 +53,7 @@ public class GUI extends JFrame {
 		
 
 		JMenuBar Menu = new JMenuBar();
-		Menu.setBounds(0, 0, 244, 20);
+		Menu.setBounds(0, 0, 358, 20);
 		getContentPane().add(Menu);
 		
 		Menu.add(MenuItem1Datei);
@@ -54,7 +64,6 @@ public class GUI extends JFrame {
 		
 		Menu.add(MenuItem2Hilfe);
 
-		
 		JMenuItem Menue2ItemHowTo = new JMenuItem("HowTo");
 		MenuItem2Hilfe.add(Menue2ItemHowTo);
 		
@@ -62,7 +71,7 @@ public class GUI extends JFrame {
 		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
 		MenuItem2Hilfe.add(Menu2ItemFaQ);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
-		TabLeiste.setBounds(-2, 18, 256, 367);
+		TabLeiste.setBounds(-2, 18, 369, 384);
 
 		getContentPane().add(TabLeiste);
 
@@ -71,21 +80,46 @@ public class GUI extends JFrame {
 		TabLeiste.addTab("Rechner", null, OberpanelTR, null);
 		OberpanelTR.setLayout(null);
 		panClear = new JPanel();
-		panClear.setBounds(15, 71, 213, 35);
+		panClear.setBounds(10, 60, 344, 40);
 		OberpanelTR.add(panClear);
-		panClear.setLayout(new GridLayout(1, 2, 7, 0));
+		panClear.setLayout(new GridLayout(1, 3, 7, 0));
 		
-				panClear.add(clearButtons[0]);
-				panClear.add(clearButtons[1]);
-				panOp.setBounds(15, 117, 213, 198);
-				OberpanelTR.add(panOp);
-				panOp.setLayout(new GridLayout(4, 3, 7, 7));
-				OberpanelTR.add(fehlerfeld);
-				OberpanelTR.add(ausgabeFeld);
-				TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
-				OberpanelER.setLayout(null);
+		panClear.add(clearButtons[0]);
+		panClear.add(clearButtons[1]);
+		panClear.add(clearButtons[2]);
 
+		panZahlen.setBackground(Color.RED);
+		panZahlen.setBounds(10, 160, 167, 177);
+		OberpanelTR.add(panZahlen);
+		panZahlen.setLayout(new GridLayout(4, 3, 7, 7));
+		
+		panIS.setBackground(new Color(175, 238, 238));
+		panIS.setBounds(187, 160, 107, 134);
+		panIS.setLayout(new GridLayout(3, 2, 7, 7));
+		OberpanelTR.add(panIS);
+		panEOp.setBackground(new Color(135, 206, 250));
+		
+		panEOp.setBounds(301, 160, 50, 177);
+		panEOp.setLayout(new GridLayout(4, 1, 7, 7));
+		panFOp.setBackground(new Color(135, 206, 250));
+		OberpanelTR.add(panEOp);
+		
+		panFOp.setBounds(10, 110, 344, 40);
+		OberpanelTR.add(panFOp);
+		panFOp.setLayout(new GridLayout(1, 6, 7, 7));
+		
+		
+		OberpanelTR.add(fehlerfeld);
+		OberpanelTR.add(ausgabeFeld);
+		panOP.setBounds(187, 302, 107, 35);
+		
+		OberpanelTR.add(panOP);
+				
+				
+				
 	
+		TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
+		OberpanelER.setLayout(null);
 	}
 
 	/*
@@ -93,7 +127,7 @@ public class GUI extends JFrame {
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 250, 399); // Groesse des Rahmens
+		setBounds(305, 205, 363, 415); // Groesse des Rahmens
 		setResizable(false); // kein Maximieren moeglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
@@ -105,9 +139,9 @@ public class GUI extends JFrame {
 		ausgabeFeld.setForeground(Color.GREEN);
 		ausgabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
 		ausgabeFeld.setBackground(Color.black);
-		ausgabeFeld.setBounds(15, 11, 213, 35);
+		ausgabeFeld.setBounds(10, 10, 344, 40);
 
-		fehlerfeld.setBounds(15, 45, 213, 27);
+		fehlerfeld.setBounds(15, 50, 279, 11);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
 		fehlerfeld.setForeground(Color.RED);
 
@@ -120,31 +154,76 @@ public class GUI extends JFrame {
 		/*
 		 * Panels generieren
 		 */
-
+//Inhalt Clear Block		
 		clearButtons[0] = new JButton("CE");
 		clearButtons[0].setName(LabelClear[0]);
 		clearButtons[0].addActionListener(new Ereignis());
-
+		
 		clearButtons[1] = new JButton(LabelClear[1]);
 		clearButtons[1].setName(LabelClear[1]);
 		clearButtons[1].addActionListener(new Ereignis());
+		
+		clearButtons[2] = new JButton("<-");
+		clearButtons[2].setName(LabelClear[2]);
+		clearButtons[2].addActionListener(new Ereignis());
+//Inhalt der Blocke erzeugen, 5 Blocke
+		for (int i = 0; i < LabelZahlen.length; i++) {
+			zahlenButtons[i] = new JButton(LabelZahlen[i]);
+			zahlenButtons[i].setName(LabelZahlen[i]);
+			zahlenButtons[i].addActionListener(new Ereignis());
+			panZahlen.add(zahlenButtons[i]);
+		}
+//
+		for (int i = 0; i < LabelIS.length; i++) {
+			isButtons[i] = new JButton(LabelIS[i]);
+			isButtons[i].setName(LabelIS[i]);
+			isButtons[i].addActionListener(new Ereignis());
+			panIS.add(isButtons[i]);
+		}
+//
 		for (int i = 0; i < LabelOp.length; i++) {
-			/*
-			 * Button inhalt erzeugen
-			 */
-			if (LabelOp[i].equals("<")) {
-				opButtons[i] = new JButton("<=");
-			}
-			else if (LabelOp[i].equals("I")) {
-				opButtons[i] = new JButton("+/-");
-			}
-			else {
-				opButtons[i] = new JButton(LabelOp[i]);
-			}
+			opButtons[i] = new JButton(LabelOp[i]);
 			opButtons[i].setName(LabelOp[i]);
 			opButtons[i].addActionListener(new Ereignis());
-			panOp.add(opButtons[i]);
+			panOP.add(opButtons[i]);
 		}
+//
+		for (int i = 0; i < LabelEOp.length; i++) {
+			if (LabelEOp[i].equals("log")) {
+				eopButtons[i] = new JButton("log(x)");
+			}
+			else if (LabelEOp[i].equals("wurz")) {
+				eopButtons[i] = new JButton("Wurzel(x)");
+			}
+			else if (LabelEOp[i].equals("quad")) {
+				eopButtons[i] = new JButton("x²");
+			}
+			else {
+				eopButtons[i] = new JButton(LabelEOp[i]);
+			}
+			eopButtons[i].setName(LabelEOp[i]);
+			eopButtons[i].addActionListener(new Ereignis());
+			panEOp.add(eopButtons[i]);
+		}
+//
+		for (int i = 0; i < LabelFOp.length; i++) {
+			if (LabelFOp[i].equals("log")) {
+				fopButtons[i] = new JButton("log(x)");
+			}
+			else if (LabelFOp[i].equals("wurz")) {
+				fopButtons[i] = new JButton("Wurzel(x)");
+			}
+			else if (LabelFOp[i].equals("quad")) {
+				opButtons[i] = new JButton("x²");
+			}
+			else {
+				fopButtons[i] = new JButton(LabelFOp[i]);
+			}
+			fopButtons[i].setName(LabelFOp[i]);
+			fopButtons[i].addActionListener(new Ereignis());
+			panFOp.add(fopButtons[i]);
+		}
+
 	}
 
 	/*
