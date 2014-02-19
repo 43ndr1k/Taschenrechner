@@ -366,7 +366,7 @@ public class GUI extends JFrame {
 				System.out.println(liste.toString());
 
 				if(liste.size()!=0){
-					if (Parser.klammerCount(liste) != 0) {
+					if (Parser.istEingeklammert(liste) == false) {
 						fehlerfeld.setText("Die Klammersetzung ist falsch!");
 					}
 					else {

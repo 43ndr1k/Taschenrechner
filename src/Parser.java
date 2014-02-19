@@ -73,7 +73,7 @@ public class Parser {
 		 * und dort der inhalt nach zwei aufeinanderfolgenden Operatoren gesucht
 		 */
 		Vector<String> liste = null;
-		int counter1 = 0, counter2 = 0;
+		int counter1 = 0;
 		aufkl = 0;
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
@@ -83,7 +83,6 @@ public class Parser {
 				counter1++;
 				aufkl = i;
 			} else if (w.get(i) == ")" & zukl == 0) {
-				counter2++;
 				zukl = i;
 				break;
 			}
@@ -161,25 +160,36 @@ public class Parser {
 		return liste;
 		
 	}
-
 	
-	static public int klammerCount(Vector<String> liste) {
-		/*
-		 * Klammer Pruefung, ob alle klammer die auf gehn auch zu gehen
-		 */
-		int counter = 0;
-		for (int i = 0; i < liste.size(); i++) {
-
-			if (liste.get(i) == "(") {
-				counter++;
-			} else if (liste.get(i) == ")") {
-				counter--;
-			} // else if (){
-//				
-//			}
-		}
-		return counter;
-	}
+    static public boolean istEingeklammert(Vector<String> liste) {
+        
+        int laenge = liste.size();
+        int position;
+        int counter = 0;
+        
+        for (position = 0; position <= (laenge - 1); position++) {
+            
+            if (liste.get(position) == "(") {
+                
+                counter ++;
+            }
+            
+            if (liste.get(position) == ")"){
+                
+                counter--;
+            }
+            if (counter < 0){              
+                                
+                return false;
+            }
+        }
+        if (counter != 0) {
+            
+            return false;
+        }
+        
+        return true;
+    }
 	
 	private Vector<String> Rechne(Vector<String> liste) {
 		/*
