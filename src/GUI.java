@@ -19,8 +19,9 @@ public class GUI extends JFrame {
 			"=" };
 	private String[] LabelClear = new String[] { "E", "C" };
 
-	private JPanel panOp = new JPanel();
 	private JPanel panClear = new JPanel();
+	private JPanel panZahlen = new JPanel();
+	private JPanel panOp = new JPanel();
 	private JButton opButtons[] = new JButton[20];
 	private JButton clearButtons[] = new JButton[2];
 	private JLabel fehlerfeld = new JLabel();
@@ -78,7 +79,7 @@ public class GUI extends JFrame {
 				panClear.add(clearButtons[1]);
 				panOp.setBounds(15, 117, 213, 198);
 				OberpanelTR.add(panOp);
-				panOp.setLayout(new GridLayout(5, 4, 7, 7));
+				panOp.setLayout(new GridLayout(4, 3, 7, 7));
 				OberpanelTR.add(fehlerfeld);
 				OberpanelTR.add(ausgabeFeld);
 				TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
