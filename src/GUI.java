@@ -95,11 +95,11 @@ public class GUI extends JFrame {
 		panClear = new JPanel();
 		panClear.setBounds(10, 60, 344, 40);
 		OberpanelTR.add(panClear);
-		panClear.setLayout(new GridLayout(1, 3, 7, 0));
 		panClear.setOpaque(false);
 		panClear.add(clearButtons[0]);
 		panClear.add(clearButtons[1]);
 		panClear.add(clearButtons[2]);
+		panClear.setLayout(null);
 
 		panZahlen.setOpaque(false);
 		panZahlen.setBounds(10, 160, 167, 177);
@@ -123,10 +123,6 @@ public class GUI extends JFrame {
 		panOP.setBounds(187, 302, 107, 35);
 		panOP.setLayout(new GridLayout(1, 1, 7, 7));
 		OberpanelTR.add(panOP);
-		
-		Panel panZ = new Panel();
-		panZ.setBounds(300, 136, 64, 220);
-		OberpanelTR.add(panZ);
 				
 				
 				
@@ -168,20 +164,23 @@ public class GUI extends JFrame {
 		 * Panels generieren
 		 */
 //Inhalt Clear Block		
-		clearButtons[0] = new JButton("CE");
+		clearButtons[0] = new JButton("C");
 		clearButtons[0].setName(LabelClear[0]);
 		clearButtons[0].addActionListener(new Ereignis());
 		clearButtons[0].setBorder(emptyBorder);
+		clearButtons[0].setBounds(0, 0, 53, 40);
 		
-		clearButtons[1] = new JButton(LabelClear[1]);
+		clearButtons[1] = new JButton("CE");
 		clearButtons[1].setName(LabelClear[1]);
 		clearButtons[1].addActionListener(new Ereignis());
 		clearButtons[1].setBorder(emptyBorder);
+		clearButtons[1].setBounds(63, 0, 138, 40);
 		
 		clearButtons[2] = new JButton("<=");
 		clearButtons[2].setName(LabelClear[2]);
 		clearButtons[2].addActionListener(new Ereignis());
 		clearButtons[2].setBorder(emptyBorder);
+		clearButtons[2].setBounds(211, 0, 129, 40);
 		
 //Inhalt der Blocke erzeugen, 5 Blocke
 		for (int i = 0; i < LabelZahlen.length; i++) {
