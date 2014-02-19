@@ -213,16 +213,18 @@ public class GUI extends JFrame {
 				/*
 				 * Letzte Eingabe rückgänig machen
 				 */
-				if (sb.length() == 0) {
-					liste.remove(liste.size() - 1);
+				if(liste.size()>0 || sb.length() > 0){
+					if (sb.length() == 0) {
+						liste.remove(liste.size() - 1);
+					}
+					else {
+						System.out.println(sb.toString());
+	
+						sb.delete(sb.length() - 1, sb.length());
+					}
+	
+					updatetxt();
 				}
-				else {
-					System.out.println(sb.toString());
-
-					sb.delete(sb.length() - 1, sb.length());
-				}
-
-				updatetxt();
 			}
 			else if (cmd == "=") {
 				
