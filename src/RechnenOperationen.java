@@ -1,6 +1,5 @@
 import java.util.Vector;
 
-
 public class RechnenOperationen {
 	
 	public Vector<String> OperatorMalGeteilt(Vector<String> liste) {

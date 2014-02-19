@@ -11,7 +11,7 @@ public class GUI extends JFrame {
 	private Vector<String> liste = new Vector<String>(); // Vector Array list
 															// liste
 	private StringBuilder sb = new StringBuilder();
-	private JTextField eingabeFeld = new JTextField();// JTextField() da hier
+	private JTextField ausgabeFeld = new JTextField();// JTextField() da hier
 														// rechtsbündig möglich;
 
 	private String[] LabelOp = new String[] { "<", "(", ")", "+", "7", "8",
@@ -33,7 +33,7 @@ public class GUI extends JFrame {
 	public GUI() {
 		RechnerOberfaeche();
 		ButtonBlock();
-		add(eingabeFeld);
+		add(ausgabeFeld);
 		add(fehlerfeld);
 		add(panClear);
 		add(panOp);
@@ -51,13 +51,13 @@ public class GUI extends JFrame {
 		setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		eingabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbündig
-		eingabeFeld.setEditable(false); // man kann etwas in Display schreiben
-		eingabeFeld.requestFocus(); // hat im Rechner den Focus
-		eingabeFeld.setForeground(Color.GREEN);
-		eingabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
-		eingabeFeld.setBackground(Color.black);
-		eingabeFeld.setBounds(15, 10, 213, 35);
+		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbündig
+		ausgabeFeld.setEditable(false); // man kann etwas in Display schreiben
+		ausgabeFeld.requestFocus(); // hat im Rechner den Focus
+		ausgabeFeld.setForeground(Color.GREEN);
+		ausgabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
+		ausgabeFeld.setBackground(Color.black);
+		ausgabeFeld.setBounds(15, 10, 213, 35);
 
 		fehlerfeld.setBounds(15, 45, 213, 15);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
@@ -135,14 +135,14 @@ public class GUI extends JFrame {
 				 * Wert zum StringBulder hinzufügen
 				 */
 				sb.append(cmd);
-				eingabeFeld.setText(eingabeFeld.getText() + cmd);
+				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == ",") {
 				/*
 				 * mach aus komma ein punkt --> wegen double später
 				 */
 				sb.append(".");
-				eingabeFeld.setText(eingabeFeld.getText() + cmd);
+				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == "+" || cmd == "-" || cmd == "*" || cmd == "/") {
 				/*
@@ -242,7 +242,7 @@ public class GUI extends JFrame {
 						// Parsen und Ergebis
 						Parser p = new Parser(liste);
 						String ergebnis = p.Ergebnis();
-						eingabeFeld.setText(ergebnis);
+						ausgabeFeld.setText(ergebnis);
 						sb.append(ergebnis);
 						liste.clear();
 					}
@@ -261,13 +261,13 @@ public class GUI extends JFrame {
 		 */
 		StringBuilder out = new StringBuilder();
 		if(liste.isEmpty()){
-			eingabeFeld.setText(sb.toString());
+			ausgabeFeld.setText(sb.toString());
 		}
 		else {
 			for (String txt : liste) {
 				out.append(txt);
 			}
-			eingabeFeld.setText(out.toString() + sb.toString());
+			ausgabeFeld.setText(out.toString() + sb.toString());
 		}
 
 		
