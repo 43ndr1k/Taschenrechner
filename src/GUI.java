@@ -400,8 +400,5 @@ public class GUI extends JFrame {
 			}
 			ausgabeFeld.setText(out.toString() + sb.toString());
 		}
-
-		
-
 	}
 }
