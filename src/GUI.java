@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	private JLabel fehlerfeld = new JLabel();
 
 	private static final long serialVersionUID = 1L;
+	private final JPanel OberpanelER = new JPanel();
 
 	/**
 	 * Create the JFrame.
@@ -33,10 +34,27 @@ public class GUI extends JFrame {
 	public GUI() {
 		RechnerOberfaeche();
 		ButtonBlock();
-		add(ausgabeFeld);
-		add(fehlerfeld);
-		add(panClear);
-		add(panOp);
+		getContentPane().setLayout(new CardLayout(0, 0));
+		
+		JPanel OberpanelTR = new JPanel();
+		getContentPane().add(OberpanelTR, "name_397477240381878");
+		OberpanelTR.setLayout(null);
+		panClear = new JPanel();
+		panClear.setBounds(15, 103, 213, 35);
+		OberpanelTR.add(panClear);
+		panClear.setLayout(new GridLayout(1, 2, 7, 0));
+		
+				panClear.add(clearButtons[0]);
+				panClear.add(clearButtons[1]);
+		panOp.setBounds(15, 149, 213, 198);
+		OberpanelTR.add(panOp);
+		panOp.setLayout(new GridLayout(5, 4, 7, 7));
+		OberpanelTR.add(fehlerfeld);
+		OberpanelTR.add(ausgabeFeld);
+		
+		getContentPane().add(OberpanelER, "name_397503889676551");
+
+	
 	}
 
 	/*
@@ -44,11 +62,10 @@ public class GUI extends JFrame {
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 250, 350); // Größe des Rahmens
+		setBounds(305, 205, 250, 387); // Größe des Rahmens
 		setResizable(false); // kein Maximieren möglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
-		setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbündig
@@ -57,7 +74,7 @@ public class GUI extends JFrame {
 		ausgabeFeld.setForeground(Color.GREEN);
 		ausgabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
 		ausgabeFeld.setBackground(Color.black);
-		ausgabeFeld.setBounds(15, 10, 213, 35);
+		ausgabeFeld.setBounds(15, 57, 213, 35);
 
 		fehlerfeld.setBounds(15, 45, 213, 15);
 		fehlerfeld.setFont(new Font("Serif", Font.BOLD, 15));
@@ -72,10 +89,6 @@ public class GUI extends JFrame {
 		/*
 		 * Panels generieren
 		 */
-		panClear = new JPanel();
-		// clearTasten.setForeground(Color.red);
-		panClear.setBounds(15, 65, 213, 35);
-		panClear.setLayout(new GridLayout(1, 2, 7, 0));
 
 		clearButtons[0] = new JButton("CE");
 		clearButtons[0].setName(LabelClear[0]);
@@ -84,12 +97,6 @@ public class GUI extends JFrame {
 		clearButtons[1] = new JButton(LabelClear[1]);
 		clearButtons[1].setName(LabelClear[1]);
 		clearButtons[1].addActionListener(new Ereignis());
-
-		panClear.add(clearButtons[0]);
-		panClear.add(clearButtons[1]);
-
-		panOp.setBounds(15, 110, 213, 198);
-		panOp.setLayout(new GridLayout(5, 4, 7, 7));
 		for (int i = 0; i < LabelOp.length; i++) {
 			/*
 			 * Button inhalt erzeugen
@@ -273,6 +280,4 @@ public class GUI extends JFrame {
 		
 
 	}
-
-
 }
