@@ -114,6 +114,7 @@ public class RechnenOperationen {
 		for (int i = 0; i < liste.size(); i++) {
 			if (liste.get(i).equals("sin")) {
 				double a = (Double.parseDouble(liste.get(i+1).toString()));
+				
 				a = Math.sin(a);
 				
 				liste.remove(i);
@@ -182,16 +183,16 @@ public class RechnenOperationen {
 	}
 	public Vector<String> Fakult(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
-			if (liste.get(i).equals("Fakultät")) {
-				double a = (Double.parseDouble(liste.get(i+1).toString()));
+			if (liste.get(i).equals("!")) {
+				double a = (Double.parseDouble(liste.get(i-1).toString()));
 				double produkt=1;
-				for(int c=1;c <= a ;i++){
-					produkt=produkt*i;
+				for(int c=1;c <= a ;c++){
+					produkt*=c;
 				}	
 				
 				liste.remove(i);
 				liste.add(i, String.valueOf(produkt));
-				liste.remove(i +1);
+				liste.remove(i -1);
 				//liste.remove(i);
 				i = 0;
 			}
