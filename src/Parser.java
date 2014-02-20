@@ -206,6 +206,11 @@ public class Parser {
 			l = re.log(l);
 			l = re.sqrt(l);
 			l = re.quad(l);
+			l = re.sin(l);
+			l = re.cos(l);
+			l = re.tan(l);
+			l = re.Reziproke(l);
+			l = re.Fakult(l);
 			l = re.OperatorMalGeteilt(l);
 			l = re.OperatorPlusMinus(l);
 			

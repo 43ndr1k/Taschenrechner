@@ -404,7 +404,7 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "sqrt") {
-				// Tobi - Quadrieren
+				// H - Wurzel
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -415,7 +415,7 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "log") {
-				// Tobi - Quadrieren
+				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -423,6 +423,64 @@ public class GUI extends JFrame {
 				}
 				liste.add(cmd);
 				liste.add("(");
+				updatetxt();
+			}
+			else if (cmd == "sin") {
+				// H - logarithmieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add("sin");
+				liste.add("(");
+				updatetxt();
+			}
+
+			else if (cmd == "cos") {
+				// H - logarithmieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add("cos");
+				liste.add("(");
+				updatetxt();
+			}
+
+			else if (cmd == "tan") {
+				// H - logarithmieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add("tan");
+				liste.add("(");
+				updatetxt();
+			}
+
+			else if (cmd == "1/x") {
+				// H - logarithmieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add("Reziproke");
+				liste.add("(");
+				updatetxt();
+			}
+			else if (cmd == "!") {
+				// H - logarithmieren
+				if (sb.length() != 0) {
+					liste.add(sb.toString());
+					sb.delete(0, sb.length());
+					
+				}
+				liste.add(")");
+				liste.add("!");
 				updatetxt();
 			}
 			else if (cmd == "=") {			
