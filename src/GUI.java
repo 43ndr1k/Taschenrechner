@@ -23,7 +23,7 @@ public class GUI extends JFrame {
 	private String[] LabelZahlen = new String[] { "7", "8",	"9", "4", "5", "6", "1", "2", "3", "I", "0", ",",};
 	private String[] LabelIS = new String[] { "(", ")", "+", "-", "*", "/"};
 	private String[] LabelOp = new String[] { "="};
-	private String[] LabelEOp = new String[] { "e", "log", "sqrt", "quad"};
+	private String[] LabelEOp = new String[] { "e", "ln", "sqrt", "quad"};
 	private String[] LabelFOp = new String[] { "sin", "cos", "tan", "!", "1/x", "PI"};
 	private String[] LabelClear = new String[] { "C", "E", "<"};
 
@@ -163,7 +163,6 @@ public class GUI extends JFrame {
 		ausgabeFeld.setBounds(10, 10, 344, 40);
 
 		
-		
 	}
 
 	private void ButtonBlock() {
@@ -219,11 +218,12 @@ public class GUI extends JFrame {
 		}
 //
 		for (int i = 0; i < LabelEOp.length; i++) {
-			if (LabelEOp[i].equals("log")) {
-				eopButtons[i] = new JButton("log(x");
+			if (LabelEOp[i].equals("ln")) {
+				eopButtons[i] = new JButton("ln(x");
 			}
-			else if (LabelEOp[i].equals("wurz")) {
+			else if (LabelEOp[i].equals("sqrt")) {
 				eopButtons[i] = new JButton("sqrt(x");
+				eopButtons[i].setBorder(emptyBorder);
 			}
 			else if (LabelEOp[i].equals("quad")) {
 				eopButtons[i] = new JButton("x²");
@@ -430,7 +430,7 @@ public class GUI extends JFrame {
 				liste.add("+");
 				updatetxt();
 			}
-			else if (cmd == "log") {
+			else if (cmd == "ln") {
 				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
