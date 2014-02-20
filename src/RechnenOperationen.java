@@ -160,9 +160,7 @@ public class RechnenOperationen {
 				i = 0;
 			}
 		}
-
-		return liste;
-		
+		return liste;		
 	}
 	public Vector<String> Reziproke(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
@@ -177,9 +175,7 @@ public class RechnenOperationen {
 				i = 0;
 			}
 		}
-
-		return liste;
-		
+		return liste;		
 	}
 	public Vector<String> Fakult(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
@@ -197,7 +193,6 @@ public class RechnenOperationen {
 				i = 0;
 			}
 		}
-
 		return liste;
 		
 	}
