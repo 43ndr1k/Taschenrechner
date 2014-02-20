@@ -209,10 +209,10 @@ public class GUI extends JFrame {
 //
 		for (int i = 0; i < LabelEOp.length; i++) {
 			if (LabelEOp[i].equals("log")) {
-				eopButtons[i] = new JButton("log(x)");
+				eopButtons[i] = new JButton("log(x");
 			}
 			else if (LabelEOp[i].equals("wurz")) {
-				eopButtons[i] = new JButton("sqrt(x)");
+				eopButtons[i] = new JButton("sqrt(x");
 			}
 			else if (LabelEOp[i].equals("quad")) {
 				eopButtons[i] = new JButton("x²");
@@ -228,16 +228,19 @@ public class GUI extends JFrame {
 //
 		for (int i = 0; i < LabelFOp.length; i++) {
 			if (LabelFOp[i].equals("sin")) {
-				fopButtons[i] = new JButton("sin(x)");
+				fopButtons[i] = new JButton("sin(x");
 			}
 			else if (LabelFOp[i].equals("cos")) {
-				fopButtons[i] = new JButton("cos(x)");
+				fopButtons[i] = new JButton("cos(x");
 			}
 			else if (LabelFOp[i].equals("tan")) {
-				fopButtons[i] = new JButton("tan(x)");
+				fopButtons[i] = new JButton("tan(x");
 			}
 			else if (LabelFOp[i].equals("!")) {
-				fopButtons[i] = new JButton("(x)!");
+				fopButtons[i] = new JButton("x)!");
+			}
+			else if (LabelFOp[i].equals("1/x")) {
+				fopButtons[i] = new JButton("1/(x");
 			}
 			else {
 				fopButtons[i] = new JButton(LabelFOp[i]);
@@ -412,6 +415,8 @@ public class GUI extends JFrame {
 				}
 				liste.add(cmd);
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
 				updatetxt();
 			}
 			else if (cmd == "log") {
@@ -423,6 +428,8 @@ public class GUI extends JFrame {
 				}
 				liste.add(cmd);
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
 				updatetxt();
 			}
 			else if (cmd == "sin") {
@@ -434,6 +441,8 @@ public class GUI extends JFrame {
 				}
 				liste.add("sin");
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
 				updatetxt();
 			}
 
@@ -446,6 +455,8 @@ public class GUI extends JFrame {
 				}
 				liste.add("cos");
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
 				updatetxt();
 			}
 
@@ -458,6 +469,8 @@ public class GUI extends JFrame {
 				}
 				liste.add("tan");
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
 				updatetxt();
 			}
 
@@ -470,6 +483,9 @@ public class GUI extends JFrame {
 				}
 				liste.add("Reziproke");
 				liste.add("(");
+				liste.add("0");
+				liste.add("+");
+
 				updatetxt();
 			}
 			else if (cmd == "!") {
