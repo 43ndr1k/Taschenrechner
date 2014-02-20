@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuKeyEvent;
 
 public class GUI extends JFrame {
 
@@ -40,8 +42,8 @@ public class GUI extends JFrame {
 	
 	//Menus
 	private static final long serialVersionUID = 1L;
-	private final JMenu MenuItem1Datei = new JMenu("Datei");
-	private final JMenu MenuItem2Hilfe = new JMenu("Hilfe");
+	private final JMenu MenuDatei = new JMenu("Datei");
+	private final JMenu MenuHilfe = new JMenu("Hilfe");
 	//Tableiste
 	private final JPanel OberpanelER = new JPanel();
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
@@ -56,26 +58,35 @@ public class GUI extends JFrame {
 		ButtonBlock();
 		getContentPane().setLayout(null);
 		
-
+		// menü beginnt
 		JMenuBar Menu = new JMenuBar();
 		Menu.setBounds(0, 0, 358, 20);
 		getContentPane().add(Menu);
-		
-		Menu.add(MenuItem1Datei);
+		//Menü Datei
+		Menu.add(MenuDatei);
 
 		
-		JMenuItem Menue1ItemBeenden = new JMenuItem("Beenden");
-		MenuItem1Datei.add(Menue1ItemBeenden);
-		
-		Menu.add(MenuItem2Hilfe);
+		JMenuItem MenuDateiBeenden = new JMenuItem("Beenden");
+		MenuDateiBeenden.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.exit( 0 );
+			}
+		}
+		);
 
-		JMenuItem Menue2ItemHowTo = new JMenuItem("HowTo");
-		MenuItem2Hilfe.add(Menue2ItemHowTo);
-		
+		MenuDatei.add(MenuDateiBeenden);
 
-		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
-		MenuItem2Hilfe.add(Menu2ItemFaQ);
-		TabLeiste.setToolTipText("teeest\r\n");
+		//Menü Hilfe
+		Menu.add(MenuHilfe);
+
+		JMenuItem MenuHilfeHowTo = new JMenuItem("HowTo");
+		MenuHilfe.add(MenuHilfeHowTo);
+		
+		JMenuItem MenuHilfeFaQ = new JMenuItem("FaQ");
+		MenuHilfe.add(MenuHilfeFaQ);
+		
+		//Tab Leiste
 		TabLeiste.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
 		TabLeiste.setBounds(-2, 18, 369, 384);

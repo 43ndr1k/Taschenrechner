@@ -207,9 +207,7 @@ public class RechnenOperationen {
 				}
 			}
 		}
-
-		return liste;
-		
+		return liste;	
 	}
 	public Vector<String> Fakult(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
@@ -239,14 +237,10 @@ public class RechnenOperationen {
 						JOptionPane.showMessageDialog(new JFrame(),
 							      "Die Fakultät einer negativen Zahl ist nicht definiert",
 							      null, JOptionPane.ERROR_MESSAGE);	
-					}
-				
-				
+					}		
 			}
 		}
-
-		return liste;
-		
+		return liste;	
 	}
 	
 
