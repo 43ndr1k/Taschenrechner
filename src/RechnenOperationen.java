@@ -7,7 +7,9 @@ public class RechnenOperationen {
 		 * Operationen Multiplikation und Division
 		 */
 		for (int i = 0; i < liste.size(); i++) {
+			
 			if (liste.get(i).equals("*")) {
+				
 				double a = (Double.parseDouble(liste.get(i - 1).toString()))
 						* (Double.parseDouble(liste.get(i + 1).toString()));
 				liste.remove(i);

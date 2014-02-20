@@ -12,9 +12,9 @@ public class Parser {
 	public Parser(Vector<String> v) {
 		this.Wort = v;
 	}
-	
+
 	public Parser() {
-		
+
 	}
 	public String Ergebnis() {
 		/*
@@ -41,11 +41,22 @@ public class Parser {
 				if (liste.get(0).equals("(")) {
 					Vector<String> t = new Vector<>();
 					t = Rechne(KlammerPruefung(liste));
-					liste.add((aufkl), t.get(0).toString());
-					for (int i = zukl + 1; i > aufkl; i--) {
-						liste.remove(i);
+					if(!t.isEmpty()){
+						liste.add((aufkl), t.get(0).toString());
+						for (int i = zukl + 1; i > aufkl; i--) {
+							liste.remove(i);
+						}
+					}else{
+						ende = true;
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Falscher Ausdruck",
+								null, JOptionPane.ERROR_MESSAGE);
+						liste.clear();
+						
 					}
-				} else {
+					
+				} 
+				else {
 					ende = true;
 				}
 			}
@@ -77,8 +88,8 @@ public class Parser {
 		aufkl = 0;
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
-			
-			
+
+
 			if (w.get(i) == "(") {
 				counter1++;
 				aufkl = i;
@@ -97,7 +108,7 @@ public class Parser {
 				 * neue Liste wird erstellt
 				 */
 				liste.add(w.get(i).toString());
-				
+
 			}
 
 			System.out.println(liste.toString());
@@ -106,7 +117,7 @@ public class Parser {
 	}
 
 	private Vector<String> SyntaxTest(Vector<String> liste){
-		
+
 		/*
 		 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
 		 */
@@ -130,12 +141,12 @@ public class Parser {
 				liste.remove(i + 1);
 				liste.remove(i + 1);
 				liste.add(i + 1, String.valueOf(a));
-				
+
 			}	else if((liste.get(i).matches("\\d+([.]{1}\\d+)?") && liste.get(i + 1) == "(")
 					|| (liste.get(i) == ")" && liste.get(i+1).matches("\\d+([.]{1}\\d+)?"))
 					|| (liste.get(i) == ")" && liste.get(i+1) == "(")
 					|| liste.get(i).matches("\\d+([.]{1}\\d+)?") && liste.get(i+1).matches("\\d+([.]{1}\\d+)?")){
-					
+
 				/*
 				 * Pruefung auf zahl und offende Klammer
 				 */
@@ -146,8 +157,11 @@ public class Parser {
 					|| (liste.get(i) =="*" && liste.get(i+1) == ")")
 					|| (liste.get(i) =="/" && liste.get(i+1) == ")")
 					|| (liste.get(i) =="+" && liste.get(i+1) == ")")
-					|| (liste.get(i) =="-" && liste.get(i+1) == ")")) {
-	
+					|| (liste.get(i) =="-" && liste.get(i+1) == ")")
+					|| (liste.get(i) =="/" && liste.get(i+1) == "0")
+					|| (liste.get(i) =="+" && liste.get(i+1) == "/")
+					|| (liste.get(i) =="+" && liste.get(i+1) == "*")) {
+
 				/*
 				 * Nicht definierte Operationen
 				 */
@@ -159,60 +173,60 @@ public class Parser {
 			}
 		}
 		return liste;
-		
+
 	}
-	
-    static public boolean istEingeklammert(Vector<String> liste) {
-        
-        int laenge = liste.size();
-        int position;
-        int counter = 0;
-        
-        for (position = 0; position <= (laenge - 1); position++) {
-            
-            if (liste.get(position) == "(") {
-                
-                counter ++;
-            }
-            
-            if (liste.get(position) == ")"){
-                
-                counter--;
-            }
-            if (counter < 0){              
-                                
-                return false;
-            }
-        }
-        if (counter != 0) {
-            
-            return false;
-        }
-        
-        return true;
-    }
-	
+
+	static public boolean istEingeklammert(Vector<String> liste) {
+
+		int laenge = liste.size();
+		int position;
+		int counter = 0;
+
+		for (position = 0; position <= (laenge - 1); position++) {
+
+			if (liste.get(position) == "(") {
+
+				counter ++;
+			}
+
+			if (liste.get(position) == ")"){
+
+				counter--;
+			}
+			if (counter < 0){              
+
+				return false;
+			}
+		}
+		if (counter != 0) {
+
+			return false;
+		}
+
+		return true;
+	}
+
 	private Vector<String> Rechne(Vector<String> liste) {
 		/*
 		 * Aufruf der Rechenoperationen
 		 */
 		Vector<String> l = new Vector<String>();
-		
-			if(!liste.isEmpty() && liste.size()>2){
-				/*
-				 * If anweisung um den Fehler leere liste und liste mit inhalt 0+ abzufangen
-				 */
+
+		if(!liste.isEmpty() && liste.size()>2){
+			/*
+			 * If anweisung um den Fehler leere liste und liste mit inhalt 0+ abzufangen
+			 */
 			l = liste;
 			l = re.log(l);
 			l = re.sqrt(l);
 			l = re.quad(l);
 			l = re.OperatorMalGeteilt(l);
 			l = re.OperatorPlusMinus(l);
-			
+
 		}
-			else{
-				liste.add("0"); // damit irgendwas in der rueckgabe liste steht
-			}
+		else{
+			liste.add("0"); // damit irgendwas in der rueckgabe liste steht
+		}
 		return l;
 	}
 
