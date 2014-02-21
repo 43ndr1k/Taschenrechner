@@ -52,9 +52,7 @@ public class Parser {
 								"Falscher Ausdruck",
 								null, JOptionPane.ERROR_MESSAGE);
 						liste.clear();
-						
 					}
-					
 				} 
 				else {
 					ende = true;
@@ -63,7 +61,6 @@ public class Parser {
 		}
 		return liste;
 	}
-
 	private void InKlammer() {
 		/*
 		 * Hier werden um den kopletten Term Klammer hinzugefuegt, damit die
@@ -76,7 +73,6 @@ public class Parser {
 		Wort.add(Wort.size(), ")");
 		System.out.println(Wort.toString());
 	}
-
 	private Vector<String> KlammerPruefung(Vector<String> w) {
 		/*
 		 * Die Klammerpruefung, hier wird nach der letzten ( gesusucht und die
@@ -88,8 +84,6 @@ public class Parser {
 		aufkl = 0;
 		zukl = 0;
 		for (int i = 0; i < w.size(); i++) {
-
-
 			if (w.get(i) == "(") {
 				counter1++;
 				aufkl = i;
@@ -100,7 +94,6 @@ public class Parser {
 		}
 		if (counter1 != 0) {
 			liste = new Vector<String>();
-
 			liste.add("0");
 			liste.add("+");
 			for (int i = aufkl + 1; i < zukl; i++) {
@@ -108,16 +101,13 @@ public class Parser {
 				 * neue Liste wird erstellt
 				 */
 				liste.add(w.get(i).toString());
-
 			}
-
 			System.out.println(liste.toString());
 		}
 		return liste;
 	}
 
 	private Vector<String> SyntaxTest(Vector<String> liste){
-
 		/*
 		 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
 		 */
@@ -173,9 +163,7 @@ public class Parser {
 			}
 		}
 		return liste;
-
 	}
-
 	static public boolean istEingeklammert(Vector<String> liste) {
 
 		int laenge = liste.size();
@@ -234,6 +222,4 @@ public class Parser {
 		}
 		return l;
 	}
-
-
 }
