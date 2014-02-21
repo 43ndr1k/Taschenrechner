@@ -2,6 +2,8 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Vector;
 
 import javax.swing.border.Border;
@@ -104,11 +106,32 @@ public class GUI extends JFrame {
 		panOP.setBounds(187, 302, 107, 35);
 		panOP.setLayout(new GridLayout(1, 1, 7, 7));
 		OberpanelTR.add(panOP);
+		OberpanelHilfe.setBackground(new Color(125, 196, 240));
 		OberpanelHilfe.setToolTipText("");
 		
 		TabLeiste.addTab("Hilfe", null, OberpanelHilfe, null);
 		OberpanelHilfe.setLayout(null);
-	}
+		
+		JTextPane txtKurzanleitung = new JTextPane();
+		txtKurzanleitung.setEditable(false);
+		txtKurzanleitung.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		txtKurzanleitung.setText("Kurzanleitung\nUm die schnelle Bedienung zu erleichtern, hier die grundlegenden Funktionen und einige Eigenarten:\n\nDie Bedienung verlaeuft via Maus.\n\nUm Funktionen des erweiterten Operationsbereich nutzen zu koennen, kann man die Buttons als Hinweise nutzen, wo der Aufruf hin muss. Insgesamt muss ein volles Klammerpaar entstehen.\nAlso kommt z.B. 'sin(x' vor den Term, 'x)!' jedoch dahinter.\n\nUm die Fakultaet, einer negativen Zahl zu bilden, muss die Zahl von der 0 abgezogen werden.\n\n'C' löscht alles; 'CE' bis zum letzten Operator und '<=' das letzte Zeichen.");
+		txtKurzanleitung.setBounds(7, 7, 344, 282);
+		txtKurzanleitung.setOpaque(false);
+		txtKurzanleitung.setBorder(emptyBorder);
+		OberpanelHilfe.add(txtKurzanleitung);
+		
+		JTextPane txtKurzanleitungLink = new JTextPane();
+		txtKurzanleitungLink.setBounds(7, 300, 347, 36);
+		try {
+			URL Hilfe = new URL("http://www.taschenrechner.t-imperium.de/");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		txtKurzanleitungLink.setText();
+		OberpanelHilfe.add(txtKurzanleitungLink);
+	}//
 
 	/*
 	 * groesse,eingabe feld festlegen
