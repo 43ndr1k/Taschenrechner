@@ -28,7 +28,8 @@ public class GUI extends JFrame {
 	private String[] LabelEOp = new String[] { "e", "ln", "sqrt", "quad"};
 	private String[] LabelFOp = new String[] { "sin", "cos", "tan", "!", "1/x", "PI"};
 	private String[] LabelClear = new String[] { "C", "E", "<"};
-
+	String buttonmehrhilfe = null;
+	
 	private JPanel panZahlen = new JPanel();
 	private JPanel panIS = new JPanel();
 	private JPanel panEOp = new JPanel();
@@ -121,16 +122,13 @@ public class GUI extends JFrame {
 		txtKurzanleitung.setBorder(emptyBorder);
 		OberpanelHilfe.add(txtKurzanleitung);
 		
-		JTextPane txtKurzanleitungLink = new JTextPane();
-		txtKurzanleitungLink.setBounds(7, 300, 347, 36);
-		try {
-			URL Hilfe = new URL("http://www.taschenrechner.t-imperium.de/");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		txtKurzanleitungLink.setText("");
-		OberpanelHilfe.add(txtKurzanleitungLink);
+		JButton ButtonMehrHilfe = new JButton("Mehr Hilfe");
+		ButtonMehrHilfe.setName("buttonmehrhilfe");
+		ButtonMehrHilfe.setBounds(119, 300, 89, 23);
+		ButtonMehrHilfe.setBorder(emptyBorder);
+		ButtonMehrHilfe.addActionListener(new Ereignis());
+		OberpanelHilfe.add(ButtonMehrHilfe);
+		
 	}//
 
 	/*
@@ -267,7 +265,6 @@ public class GUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-
 			JButton a = (JButton) e.getSource();
 			String cmd = a.getName(); // Name der aufgerufenden Button
 			if (liste.size() > 0) {
@@ -505,6 +502,19 @@ public class GUI extends JFrame {
 				liste.add("!");
 				updatetxt();
 			}
+			else if (cmd == "buttonmehrhilfe") {
+				
+				try 
+		        {
+		            Desktop.getDesktop().browse(new URL("http://www.google.de").toURI());
+		        }           
+		        catch (Exception e1) {}
+				
+			}
+			
+			
+			
+
 			else if (cmd == "=") {			
 				// gleiche wie komentar zuvor
 				if (sb.length() != 0) {
