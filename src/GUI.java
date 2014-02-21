@@ -129,7 +129,7 @@ public class GUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		txtKurzanleitungLink.setText();
+		txtKurzanleitungLink.setText("");
 		OberpanelHilfe.add(txtKurzanleitungLink);
 	}//
 
