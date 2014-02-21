@@ -2,10 +2,14 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Vector;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuKeyEvent;
 
 public class GUI extends JFrame {
 
@@ -21,7 +25,7 @@ public class GUI extends JFrame {
 	private String[] LabelZahlen = new String[] { "7", "8",	"9", "4", "5", "6", "1", "2", "3", "I", "0", ",",};
 	private String[] LabelIS = new String[] { "(", ")", "+", "-", "*", "/"};
 	private String[] LabelOp = new String[] { "="};
-	private String[] LabelEOp = new String[] { "e", "log", "sqrt", "quad"};
+	private String[] LabelEOp = new String[] { "e", "ln", "sqrt", "quad"};
 	private String[] LabelFOp = new String[] { "sin", "cos", "tan", "!", "1/x", "PI"};
 	private String[] LabelClear = new String[] { "C", "E", "<"};
 
@@ -40,14 +44,11 @@ public class GUI extends JFrame {
 	
 	//Menus
 	private static final long serialVersionUID = 1L;
-	private final JMenu MenuItem1Datei = new JMenu("Datei");
-	private final JMenu MenuItem2Hilfe = new JMenu("Hilfe");
-	//Tableiste
-	private final JPanel OberpanelER = new JPanel();
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel panOP = new JPanel();
 
 	Border emptyBorder = BorderFactory.createEmptyBorder();
+	private final JPanel OberpanelHilfe = new JPanel();
 	/**
 	 * Create the JFrame.
 	 */
@@ -56,29 +57,10 @@ public class GUI extends JFrame {
 		ButtonBlock();
 		getContentPane().setLayout(null);
 		
-
-		JMenuBar Menu = new JMenuBar();
-		Menu.setBounds(0, 0, 358, 20);
-		getContentPane().add(Menu);
-		
-		Menu.add(MenuItem1Datei);
-
-		
-		JMenuItem Menue1ItemBeenden = new JMenuItem("Beenden");
-		MenuItem1Datei.add(Menue1ItemBeenden);
-		
-		Menu.add(MenuItem2Hilfe);
-
-		JMenuItem Menue2ItemHowTo = new JMenuItem("HowTo");
-		MenuItem2Hilfe.add(Menue2ItemHowTo);
-		
-
-		JMenuItem Menu2ItemFaQ = new JMenuItem("FaQ");
-		MenuItem2Hilfe.add(Menu2ItemFaQ);
-		TabLeiste.setToolTipText("teeest\r\n");
+		//Tab Leiste
 		TabLeiste.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
-		TabLeiste.setBounds(-2, 18, 369, 384);
+		TabLeiste.setBounds(-2, 0, 369, 450);
 
 		getContentPane().add(TabLeiste);
 
@@ -124,20 +106,39 @@ public class GUI extends JFrame {
 		panOP.setBounds(187, 302, 107, 35);
 		panOP.setLayout(new GridLayout(1, 1, 7, 7));
 		OberpanelTR.add(panOP);
-				
-				
-				
-	
-		TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
-		OberpanelER.setLayout(null);
-	}
+		OberpanelHilfe.setBackground(new Color(125, 196, 240));
+		OberpanelHilfe.setToolTipText("");
+		
+		TabLeiste.addTab("Hilfe", null, OberpanelHilfe, null);
+		OberpanelHilfe.setLayout(null);
+		
+		JTextPane txtKurzanleitung = new JTextPane();
+		txtKurzanleitung.setEditable(false);
+		txtKurzanleitung.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		txtKurzanleitung.setText("Kurzanleitung\nUm die schnelle Bedienung zu erleichtern, hier die grundlegenden Funktionen und einige Eigenarten:\n\nDie Bedienung verlaeuft via Maus.\n\nUm Funktionen des erweiterten Operationsbereich nutzen zu koennen, kann man die Buttons als Hinweise nutzen, wo der Aufruf hin muss. Insgesamt muss ein volles Klammerpaar entstehen.\nAlso kommt z.B. 'sin(x' vor den Term, 'x)!' jedoch dahinter.\n\nUm die Fakultaet, einer negativen Zahl zu bilden, muss die Zahl von der 0 abgezogen werden.\n\n'C' löscht alles; 'CE' bis zum letzten Operator und '<=' das letzte Zeichen.");
+		txtKurzanleitung.setBounds(7, 7, 344, 282);
+		txtKurzanleitung.setOpaque(false);
+		txtKurzanleitung.setBorder(emptyBorder);
+		OberpanelHilfe.add(txtKurzanleitung);
+		
+		JTextPane txtKurzanleitungLink = new JTextPane();
+		txtKurzanleitungLink.setBounds(7, 300, 347, 36);
+		try {
+			URL Hilfe = new URL("http://www.taschenrechner.t-imperium.de/");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		txtKurzanleitungLink.setText();
+		OberpanelHilfe.add(txtKurzanleitungLink);
+	}//
 
 	/*
 	 * groesse,eingabe feld festlegen
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 363, 415); // Groesse des Rahmens
+		setBounds(305, 205, 363, 401); // Groesse des Rahmens
 		setResizable(false); // kein Maximieren moeglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
@@ -151,7 +152,6 @@ public class GUI extends JFrame {
 		ausgabeFeld.setBackground(Color.black);
 		ausgabeFeld.setBounds(10, 10, 344, 40);
 
-		
 		
 	}
 
@@ -183,7 +183,12 @@ public class GUI extends JFrame {
 		
 //Inhalt der Blocke erzeugen, 5 Blocke
 		for (int i = 0; i < LabelZahlen.length; i++) {
-			zahlenButtons[i] = new JButton(LabelZahlen[i]);
+			if (LabelZahlen[i].equals("I")) {
+				zahlenButtons[i] = new JButton("+/-");
+			}
+			else {
+				zahlenButtons[i] = new JButton(LabelZahlen[i]);
+			}
 			zahlenButtons[i].setName(LabelZahlen[i]);
 			zahlenButtons[i].addActionListener(new Ereignis());
 			panZahlen.add(zahlenButtons[i]);
@@ -208,11 +213,12 @@ public class GUI extends JFrame {
 		}
 //
 		for (int i = 0; i < LabelEOp.length; i++) {
-			if (LabelEOp[i].equals("log")) {
-				eopButtons[i] = new JButton("log(x");
+			if (LabelEOp[i].equals("ln")) {
+				eopButtons[i] = new JButton("ln(x");
 			}
-			else if (LabelEOp[i].equals("wurz")) {
+			else if (LabelEOp[i].equals("sqrt")) {
 				eopButtons[i] = new JButton("sqrt(x");
+				eopButtons[i].setBorder(emptyBorder);
 			}
 			else if (LabelEOp[i].equals("quad")) {
 				eopButtons[i] = new JButton("x²");
@@ -419,7 +425,7 @@ public class GUI extends JFrame {
 				liste.add("+");
 				updatetxt();
 			}
-			else if (cmd == "log") {
+			else if (cmd == "ln") {
 				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());

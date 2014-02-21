@@ -94,7 +94,7 @@ public class RechnenOperationen {
 				}
 				else {
 					{JOptionPane.showMessageDialog(new JFrame(),
-						      "Im Bereich der reellen Zaheln ist die Wurzel nur für Zahlen größer gleich 0 definiert",
+						      "Im Bereich der reellen Zahlen ist die Wurzel nur für Zahlen größer gleich 0 definiert",
 						      null, JOptionPane.ERROR_MESSAGE);	
 					}
 				}
@@ -104,12 +104,20 @@ public class RechnenOperationen {
 		return liste;
 		
 	}
-	public Vector<String> log(Vector<String> liste) {
+	public Vector<String> ln(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
-			if (liste.get(i).equals("log")) {
+			if (liste.get(i).equals("ln")) {
 				double a = (Double.parseDouble(liste.get(i+1).toString()));
-				a = Math.log10(a);
 				
+				if (a>0){
+				a = Math.log(a);
+				}
+				else {
+					{JOptionPane.showMessageDialog(new JFrame(),
+						      "Im Bereich der reellen Zahlen ist der Logarithmus nur für Zahlen größer  0 definiert",
+						      null, JOptionPane.ERROR_MESSAGE);	
+					}
+				}
 				liste.remove(i);
 				liste.add(i, String.valueOf(a));
 				liste.remove(i +1);
@@ -169,12 +177,13 @@ public class RechnenOperationen {
 		for (int i = 0; i < liste.size(); i++) {
 			if (liste.get(i).equals("tan")) {
 				double a = (Double.parseDouble(liste.get(i+1).toString()));
-				if (a<0){
-					a = -Math.tan(Math.toRadians(Math.abs(a)));
-					}
-					else {
-						a=Math.tan(Math.toRadians(a));	
-					}
+				a = (Math.tan(Math.toRadians(a)));
+//				if (a<0){
+//					a = Math.tan(a);
+//					}
+//					else {
+//						a = Math.sin(Math.toRadians(Math.abs(a)))/Math.cos(Math.toRadians(Math.abs(a)));
+//					}
 				
 				liste.remove(i);
 				liste.add(i, String.valueOf(Math.toRadians(a)));
@@ -205,7 +214,9 @@ public class RechnenOperationen {
 				}
 			}
 		}
-		return liste;		
+
+		return liste;	
+
 	}
 	public Vector<String> Fakult(Vector<String> liste) {
 		for (int i = 0; i < liste.size(); i++) {
@@ -213,7 +224,7 @@ public class RechnenOperationen {
 				double a = (Double.parseDouble(liste.get(i-1).toString()));
 				
 				
-				if (a>=0){
+				if (a>0){
 					double produkt=1;
 					for(int c=1;c <= a ;c++){
 						produkt*=c;
@@ -231,17 +242,18 @@ public class RechnenOperationen {
 				liste.add(i, String.valueOf(1));
 				liste.remove(i -1);
 				}
-				else {
+				else if (a<0) {
 						JOptionPane.showMessageDialog(new JFrame(),
 							      "Die Fakultät einer negativen Zahl ist nicht definiert",
 							      null, JOptionPane.ERROR_MESSAGE);	
-					}
-				
-				
+					}		
 			}
 		}
-		return liste;
+
 		
+
+		return liste;	
+
 	}
 	
 
