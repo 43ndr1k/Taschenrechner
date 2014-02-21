@@ -42,14 +42,11 @@ public class GUI extends JFrame {
 	
 	//Menus
 	private static final long serialVersionUID = 1L;
-	private final JMenu MenuDatei = new JMenu("Datei");
-	private final JMenu MenuHilfe = new JMenu("Hilfe");
-	//Tableiste
-	private final JPanel OberpanelER = new JPanel();
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel panOP = new JPanel();
 
 	Border emptyBorder = BorderFactory.createEmptyBorder();
+	private final JPanel OberpanelHilfe = new JPanel();
 	/**
 	 * Create the JFrame.
 	 */
@@ -58,38 +55,10 @@ public class GUI extends JFrame {
 		ButtonBlock();
 		getContentPane().setLayout(null);
 		
-		// menü beginnt
-		JMenuBar Menu = new JMenuBar();
-		Menu.setBounds(0, 0, 358, 20);
-		getContentPane().add(Menu);
-		//Menü Datei
-		Menu.add(MenuDatei);
-
-		
-		JMenuItem MenuDateiBeenden = new JMenuItem("Beenden");
-		MenuDateiBeenden.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.exit( 0 );
-			}
-		}
-		);
-
-		MenuDatei.add(MenuDateiBeenden);
-
-		//Menü Hilfe
-		Menu.add(MenuHilfe);
-
-		JMenuItem MenuHilfeHowTo = new JMenuItem("HowTo");
-		MenuHilfe.add(MenuHilfeHowTo);
-		
-		JMenuItem MenuHilfeFaQ = new JMenuItem("FaQ");
-		MenuHilfe.add(MenuHilfeFaQ);
-		
 		//Tab Leiste
 		TabLeiste.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
-		TabLeiste.setBounds(-2, 18, 369, 384);
+		TabLeiste.setBounds(-2, 0, 369, 450);
 
 		getContentPane().add(TabLeiste);
 
@@ -135,12 +104,10 @@ public class GUI extends JFrame {
 		panOP.setBounds(187, 302, 107, 35);
 		panOP.setLayout(new GridLayout(1, 1, 7, 7));
 		OberpanelTR.add(panOP);
-				
-				
-				
-	
-		TabLeiste.addTab("Einheitenrechner", null, OberpanelER, null);
-		OberpanelER.setLayout(null);
+		OberpanelHilfe.setToolTipText("");
+		
+		TabLeiste.addTab("Hilfe", null, OberpanelHilfe, null);
+		OberpanelHilfe.setLayout(null);
 	}
 
 	/*
@@ -148,7 +115,7 @@ public class GUI extends JFrame {
 	 */
 	public void RechnerOberfaeche() {
 		// Eingabe/Ausgabe
-		setBounds(305, 205, 363, 415); // Groesse des Rahmens
+		setBounds(305, 205, 363, 401); // Groesse des Rahmens
 		setResizable(false); // kein Maximieren moeglich
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
@@ -193,7 +160,12 @@ public class GUI extends JFrame {
 		
 //Inhalt der Blocke erzeugen, 5 Blocke
 		for (int i = 0; i < LabelZahlen.length; i++) {
-			zahlenButtons[i] = new JButton(LabelZahlen[i]);
+			if (LabelZahlen[i].equals("I")) {
+				zahlenButtons[i] = new JButton("+/-");
+			}
+			else {
+				zahlenButtons[i] = new JButton(LabelZahlen[i]);
+			}
 			zahlenButtons[i].setName(LabelZahlen[i]);
 			zahlenButtons[i].addActionListener(new Ereignis());
 			panZahlen.add(zahlenButtons[i]);

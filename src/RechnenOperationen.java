@@ -177,12 +177,13 @@ public class RechnenOperationen {
 		for (int i = 0; i < liste.size(); i++) {
 			if (liste.get(i).equals("tan")) {
 				double a = (Double.parseDouble(liste.get(i+1).toString()));
-				if (a<0){
-					a = -Math.sin(Math.toRadians(Math.abs(a)))/Math.cos(Math.toRadians(Math.abs(a)));
-					}
-					else {
-						a = Math.sin(Math.toRadians(Math.abs(a)))/Math.cos(Math.toRadians(Math.abs(a)));
-					}
+				a = (Math.tan(Math.toRadians(a)));
+//				if (a<0){
+//					a = Math.tan(a);
+//					}
+//					else {
+//						a = Math.sin(Math.toRadians(Math.abs(a)))/Math.cos(Math.toRadians(Math.abs(a)));
+//					}
 				
 				liste.remove(i);
 				liste.add(i, String.valueOf(Math.toRadians(a)));
