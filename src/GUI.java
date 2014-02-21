@@ -6,15 +6,10 @@ import java.util.Vector;
 import javax.swing.border.Border;
 
 public class GUI extends JFrame {
-	/*
-	 * Deklaration von Elementen
-	 */
 	private Vector<String> liste = new Vector<String>(); // Vector Array list
-	// liste
 	private StringBuilder sb = new StringBuilder();
 	private JTextField ausgabeFeld = new JTextField();// JTextField() da hier
-	// rechtsbuendig moeglich;
-	//alle 6 Felder
+	
 	private String[] LabelZahlen = new String[] { "7", "8",	"9", "4", "5", "6", "1", "2", "3", "I", "0", ",",};
 	private String[] LabelIS = new String[] { "(", ")", "+", "-", "*", "/"};
 	private String[] LabelOp = new String[] { "="};
@@ -36,22 +31,18 @@ public class GUI extends JFrame {
 	private JButton fopButtons[] = new JButton[6];
 	private JButton clearButtons[] = new JButton[3];
 
-	//Menus
 	private static final long serialVersionUID = 1L;
 	private final JTabbedPane TabLeiste = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel panOP = new JPanel();
 
 	Border emptyBorder = BorderFactory.createEmptyBorder();
 	private final JPanel OberpanelHilfe = new JPanel();
-	/**
-	 * Create the JFrame.
-	 */
+
 	public GUI() {
 		RechnerOberfaeche();
 		ButtonBlock();
 		getContentPane().setLayout(null);
 
-		//Tab Leiste
 		TabLeiste.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		TabLeiste.setBackground(SystemColor.activeCaptionBorder);
 		TabLeiste.setBounds(-2, 0, 369, 450);
@@ -121,22 +112,19 @@ public class GUI extends JFrame {
 		ButtonMehrHilfe.addActionListener(new Ereignis());
 		OberpanelHilfe.add(ButtonMehrHilfe);
 
-	}//
-
-	/*
-	 * groesse,eingabe feld festlegen
-	 */
+	}
+	
 	public void RechnerOberfaeche() {
-		// Eingabe/Ausgabe
-		setBounds(305, 205, 363, 401); // Groesse des Rahmens
-		setResizable(false); // kein Maximieren moeglich
+		
+		setBounds(305, 205, 363, 401);
+		setResizable(false); 
 		setTitle("Taschenrechner");
 		setBackground(Color.BLACK);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); // rechtsbuendig
-		ausgabeFeld.setEditable(false); // man kann etwas in Display schreiben
-		ausgabeFeld.requestFocus(); // hat im Rechner den Focus
+		ausgabeFeld.setHorizontalAlignment(JTextField.RIGHT); 
+		ausgabeFeld.setEditable(false); 
+		ausgabeFeld.requestFocus();
 		ausgabeFeld.setForeground(Color.GREEN);
 		ausgabeFeld.setFont(new Font("Serif", Font.BOLD, 20));
 		ausgabeFeld.setBackground(Color.black);
@@ -144,13 +132,7 @@ public class GUI extends JFrame {
 	}
 
 	private void ButtonBlock() {
-		/*
-		 * Buttons generieren und GridLayout
-		 */
-		/*
-		 * Panels generieren
-		 */
-		//Inhalt Clear Block		
+	
 		clearButtons[0] = new JButton("C");
 		clearButtons[0].setName(LabelClear[0]);
 		clearButtons[0].addActionListener(new Ereignis());
@@ -169,7 +151,6 @@ public class GUI extends JFrame {
 		clearButtons[2].setBorder(emptyBorder);
 		clearButtons[2].setBounds(211, 0, 129, 40);
 
-		//Inhalt der Blocke erzeugen, 5 Blocke
 		for (int i = 0; i < LabelZahlen.length; i++) {
 			if (LabelZahlen[i].equals("I")) {
 				zahlenButtons[i] = new JButton("+/-");
@@ -247,76 +228,49 @@ public class GUI extends JFrame {
 
 	}
 
-	/*
-	 * Actionen festlegen
-	 */
 	public class Ereignis implements ActionListener {
-		String lastentry = ""; // letzte eingabe liste
+		String lastentry = "";
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			JButton a = (JButton) e.getSource();
-			String cmd = a.getName(); // Name der aufgerufenden Button
+			String cmd = a.getName();
 			if (liste.size() > 0) {
-				/*
-				 * letzte eingabe abrufen
-				 */
 				lastentry = liste.get(liste.size() - 1);
 			}
-			System.out.print(a.getName());
 			if (cmd == "0" || cmd == "1" || cmd == "2" || cmd == "3"
 					|| cmd == "4" || cmd == "5" || cmd == "6" || cmd == "7"
 					|| cmd == "8" || cmd == "9") {
-				/*
-				 * Wert zum StringBulder hinzufuegen
-				 */
 				sb.append(cmd);
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == ",") {
-				/*
-				 * mach aus komma ein punkt --> wegen double spaeter
-				 */
 				sb.append(".");
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
 			}
 			else if (cmd == "+" || cmd == "-" || cmd == "*" || cmd == "/") {
-				/*
-				 * Operationen zur liste einfuegen, sofern sb nicht leer ist,
-				 * wird die zahl zur liste hinzugefuegt und fuege operator hinzu
-				 * und leere sb
-				 */
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
 				}
 				liste.add(cmd);
-				updatetxt(); // textbox update
+				updatetxt(); 
 			}
 			else if (cmd == "(" || cmd == ")") {
-				// Klammer setzung
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
 				}
 				liste.add(cmd);
-				updatetxt(); // textbox update
+				updatetxt();
 			}
 			else if (cmd == "C") {
-				/*
-				 * Komplette liste loeschen
-				 */
 				liste.clear();
 				sb.delete(0, sb.length());
-				System.out.println("clear: " + liste.toString());
 				updatetxt();
 			}
 			else if (cmd == "I") {
-				/*
-				 * I bedeutet vorzeichen wechsel .. man nimmt die letzte eingabe
-				 * und schaut ob es - ist und tauscht es dann bei + das selbe
-				 * bei is empty das bedeutet is die erste zahl der eingabe
-				 */
+			
 				if (sb.length() > 0) {
 					if (lastentry.equals("-")) {
 						liste.set(liste.size() - 1, "+");
@@ -331,11 +285,7 @@ public class GUI extends JFrame {
 				}
 				updatetxt();
 			}
-			else if (cmd == "E") {
-				/*
-				 * E bedeutet CE, also eingabe bis zum letztn Operator rueckgaenig
-				 * machen
-				 */
+			else if (cmd == "E") {				
 				if(liste.size()>0 || sb.length() > 0){
 					if (sb.length() == 0) {
 						liste.remove(liste.size() - 1);
@@ -343,22 +293,16 @@ public class GUI extends JFrame {
 					else {
 						sb.delete(0, sb.length());
 					}
-
 					updatetxt();
 				}
 			}
 			else if (cmd == "<") {
-				/*
-				 * Letzte Eingabe rueckgaenig machen
-				 */
 				if(liste.size()>0 || sb.length() > 0){
 
 					if (sb.length() == 0) {
 						liste.remove(liste.size() - 1);
 					}
 					else {
-						System.out.println(sb.toString());
-
 						sb.delete(sb.length() - 1, sb.length());
 					}
 
@@ -366,41 +310,30 @@ public class GUI extends JFrame {
 				}
 			}
 			else if (cmd == "PI") {
-				// Tobi - Pi konst //java.lang.Math.PI
-
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
-
 				}
 				liste.add(String.valueOf(java.lang.Math.PI));
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
-
-				System.out.println(liste.toString());
 			}
 			else if (cmd == "e") {
-				// Tobi - e konst //java.lang.Math.E
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
-
 				}
 				liste.add((String.valueOf(java.lang.Math.E)));
 				ausgabeFeld.setText(ausgabeFeld.getText() + cmd);
-
 			}
 			else if (cmd == "quad") {
-				// Tobi - Quadrieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
-
 				}
 				sb.append(cmd);	
 				updatetxt();
 			}
 			else if (cmd == "sqrt") {
-				// H - Wurzel
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -412,7 +345,6 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "ln") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -424,7 +356,6 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "sin") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -436,7 +367,6 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "cos") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -448,7 +378,6 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "tan") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -461,7 +390,6 @@ public class GUI extends JFrame {
 			}
 
 			else if (cmd == "1/x") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -473,7 +401,6 @@ public class GUI extends JFrame {
 				updatetxt();
 			}
 			else if (cmd == "!") {
-				// H - logarithmieren
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
@@ -492,13 +419,10 @@ public class GUI extends JFrame {
 
 			}
 			else if (cmd == "=") {			
-				// gleiche wie komentar zuvor
 				if (sb.length() != 0) {
 					liste.add(sb.toString());
 					sb.delete(0, sb.length());
 				}
-				System.out.println(liste.toString());
-
 				if(liste.size()!=0){
 					if (Parser.istEingeklammert(liste) == false) {
 						JOptionPane.showMessageDialog(new JFrame(),
@@ -506,14 +430,12 @@ public class GUI extends JFrame {
 								null, JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						// Parsen und Ergebis
 						Parser p = new Parser(liste);
 						String ergebnis = p.Ergebnis();
 						ausgabeFeld.setText(ergebnis);
 						sb.append(ergebnis);
 						liste.clear();
 					}
-
 				}
 				else{
 					JOptionPane.showMessageDialog(new JFrame(),
@@ -521,13 +443,9 @@ public class GUI extends JFrame {
 							null, JOptionPane.ERROR_MESSAGE);
 				}
 			} 
-
 		}
 	}
 	public void updatetxt() {
-		/*
-		 * Das eingabe feld updaten
-		 */
 		StringBuilder out = new StringBuilder();
 		if(liste.isEmpty()){
 			ausgabeFeld.setText(sb.toString());
@@ -537,7 +455,6 @@ public class GUI extends JFrame {
 				out.append(txt);
 			}
 			ausgabeFeld.setText(out.toString() + sb.toString());
-
 		}
 	}
 }

@@ -3,9 +3,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Parser {
-	/*
-	 * Generiere Vector array liste
-	 */
 	private Vector<String> Wort = null;
 	private int aufkl = 0, zukl = 0;
 	private RechnenOperationen re = new RechnenOperationen();
@@ -17,9 +14,6 @@ public class Parser {
 
 	}
 	public String Ergebnis() {
-		/*
-		 * Hier wird das ergebnis zusammen gesetzt
-		 */
 		InKlammer();
 		StringBuilder out = new StringBuilder();
 		for (String txt : zusammenfuehrung()) {
@@ -28,10 +22,6 @@ public class Parser {
 		return out.toString();
 	}
 	private Vector<String> zusammenfuehrung() {
-		/*
-		 * Mehrfaches aufrufen der Klammerpruefung, mit uebergabe in die
-		 * rechnenoperationen
-		 */
 		boolean ende = false;
 		Vector<String> liste = new Vector<String>();
 		liste = Wort;
@@ -62,23 +52,12 @@ public class Parser {
 		return liste;
 	}
 	private void InKlammer() {
-		/*
-		 * Hier werden um den kopletten Term Klammer hinzugefuegt, damit die
-		 * Klammerpruefung richtig funktioniert
-		 * desweiteren wird 0+ hinzugefügt, damit der term(-Zahl+...) funktioniert)
-		 */
 		Wort.add(0,"0");
 		Wort.add(1,"+");
 		Wort.add(0, "(");
 		Wort.add(Wort.size(), ")");
-		System.out.println(Wort.toString());
 	}
 	private Vector<String> KlammerPruefung(Vector<String> w) {
-		/*
-		 * Die Klammerpruefung, hier wird nach der letzten ( gesusucht und die
-		 * erste ), alles was dort drin steht wird in eine neue Liste kopiert
-		 * und dort der inhalt nach zwei aufeinanderfolgenden Operatoren gesucht
-		 */
 		Vector<String> liste = null;
 		int counter1 = 0;
 		aufkl = 0;
@@ -97,20 +76,13 @@ public class Parser {
 			liste.add("0");
 			liste.add("+");
 			for (int i = aufkl + 1; i < zukl; i++) {
-				/*
-				 * neue Liste wird erstellt
-				 */
 				liste.add(w.get(i).toString());
 			}
-			System.out.println(liste.toString());
 		}
 		return liste;
 	}
 
 	private Vector<String> SyntaxTest(Vector<String> liste){
-		/*
-		 * Hier wird nach den zwei nacheinander folgenden Operatoren gesucht
-		 */
 		for (int i = 0; i < liste.size() - 1; i++) {
 			if (liste.get(i) == "+" && liste.get(i + 1) == "+") {
 				liste.remove(i);
@@ -136,10 +108,6 @@ public class Parser {
 					|| (liste.get(i) == ")" && liste.get(i+1).matches("\\d+([.]{1}\\d+)?"))
 					|| (liste.get(i) == ")" && liste.get(i+1) == "(")
 					|| liste.get(i).matches("\\d+([.]{1}\\d+)?") && liste.get(i+1).matches("\\d+([.]{1}\\d+)?")){
-
-				/*
-				 * Pruefung auf zahl und offende Klammer
-				 */
 				liste.add(i+1, "*");
 			}
 			else if ((liste.get(i) == "*" && liste.get(i + 1) == "/")
@@ -151,10 +119,6 @@ public class Parser {
 					|| (liste.get(i) =="/" && liste.get(i+1) == "0")
 					|| (liste.get(i) =="+" && liste.get(i+1) == "/")
 					|| (liste.get(i) =="+" && liste.get(i+1) == "*")) {
-
-				/*
-				 * Nicht definierte Operationen
-				 */
 				JOptionPane.showMessageDialog(new JFrame(),
 						"Nicht definierte Operation im Term enthalten",
 						null, JOptionPane.ERROR_MESSAGE);
@@ -165,45 +129,31 @@ public class Parser {
 		return liste;
 	}
 	static public boolean istEingeklammert(Vector<String> liste) {
-
 		int laenge = liste.size();
 		int position;
 		int counter = 0;
 
 		for (position = 0; position <= (laenge - 1); position++) {
-
 			if (liste.get(position) == "(") {
-
 				counter ++;
 			}
-
 			if (liste.get(position) == ")"){
-
 				counter--;
 			}
 			if (counter < 0){              
-
 				return false;
 			}
 		}
 		if (counter != 0) {
-
 			return false;
 		}
-
 		return true;
 	}
 
 	private Vector<String> Rechne(Vector<String> liste) {
-		/*
-		 * Aufruf der Rechenoperationen
-		 */
 		Vector<String> l = new Vector<String>();
 
 		if(!liste.isEmpty() && liste.size()>2){
-			/*
-			 * If anweisung um den Fehler leere liste und liste mit inhalt 0+ abzufangen
-			 */
 			l = liste;
 			l = re.ln(l);
 			l = re.sqrt(l);
@@ -215,11 +165,10 @@ public class Parser {
 			l = re.Fakult(l);
 			l = re.OperatorMalGeteilt(l);
 			l = re.OperatorPlusMinus(l);
-
 		}
 		else{
-			liste.add("0"); // damit irgendwas in der rueckgabe liste steht
+			liste.add("0");
 		}
 		return l;
-	}
+	}  
 }
