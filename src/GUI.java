@@ -506,7 +506,7 @@ public class GUI extends JFrame {
 				
 				try 
 		        {
-		            Desktop.getDesktop().browse(new URL("http://www.google.de").toURI());
+		            Desktop.getDesktop().browse(new URL("http://www.taschenrechner.t-imperium.de/").toURI());
 		        }           
 		        catch (Exception e1) {}
 				
